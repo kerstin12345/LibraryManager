@@ -10,17 +10,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeController {
+public class AusleihController {
     @FXML
     private Button closeButton;
+
 
     public void closing(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
-    public void ausleihen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ausleihen.fxml"));
+    public void goHome(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
 
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
@@ -28,5 +29,4 @@ public class HomeController {
         stage.setScene(scene);
         stage.show();
     }
-
 }

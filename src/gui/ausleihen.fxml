@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.HomeController"
+            fx:controller="gui.AusleihController"
             maxHeight="1080"
             maxWidth="1920"
             minHeight="540"
             minWidth="970"
             prefHeight="864"
-            prefWidth="1536"
-            style="-fx-padding: 20;">
+            prefWidth="1536">
+
     <top>
         <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
     </top>
-    <center>
-        <Label text="Bibliothek Manager"/>
-    </center>
-
     <left>
-        <Button text="Ausleihen" onAction="#ausleihen"></Button>
+        <Button text="CD"/>
+        <Button text="DVD"/>
+        <Button text="Buch"/>
     </left>
-
-
 </BorderPane>
