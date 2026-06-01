@@ -20,15 +20,54 @@
         <HBox>
             <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
             <Button text="Zurück zum Start" onAction="#goHome"/>
+            <VBox>
+                <Label fx:id="selectedMedium" text=""/>
+                <Label text="Geben Sie den Titel eines Mediums ein, un wählen Sie dann eine der unteren Optionen"/>
+            </VBox>
         </HBox>
     </top>
+    <center>
+        <HBox spacing="20" >
+            <!-- Linke Spalte: Labels -->
+            <VBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Titel:"/>
+                <Label text="Jahr:"/>
+                <Label text="Kategorie:"/>
+                <Label text="Originalsprache:"/>
+                <Label text="Autor:"/>
+                <Label text="ISBN:"/>
+                <Label text="Regisseur:"/>
+                <Label text="FSK:"/>
+                <Label text="Künstler:"/>
+                <Label text="Album:"/>
+            </VBox>
+
+            <!-- Rechte Spalte: Textfelder -->
+            <VBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="title"/>
+                <TextField fx:id="published"/>
+                <TextField fx:id="category"/>
+                <TextField fx:id="originalLanguage"/>
+                <TextField fx:id="autor"/>
+                <TextField fx:id="isbn"/>
+                <TextField fx:id="director"/>
+                <TextField fx:id="fsk"/>
+                <TextField fx:id="artist"/>
+                <TextField fx:id="album"/>
+            </VBox>
+        </HBox>
+
+    </center>
     <left>
-        <HBox>
-            <Label fx:id="selectedMedium" text=""/>
+        <VBox>
             <Button fx:id="returnMedium" text="Medium zurück geben"/>
             <Button fx:id="borrowMedium" text="Medium ausleihen"/>
             <Button fx:id="addMedium" text="Medium hinzufügen"/>
             <Button fx:id="removeMedium" text="Medium entfernen"/>
-        </HBox>
+        </VBox>
     </left>
+    <bottom>
+        <!--erst disable=false wenn alle benötigten parameter nicht mehr 0 sind-->
+        <Button text="Speichern" disable="true"/>
+    </bottom>
 </BorderPane>

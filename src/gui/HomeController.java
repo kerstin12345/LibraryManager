@@ -15,21 +15,20 @@ public class HomeController {
     @FXML
     private Button closeButton;
 
+    /**
+     * Schließt das aktuelle Fenster
+     * @param event Actionevent das durch das Klicken von closeButton ausgelöst wird
+     */
     public void closing(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
-    public void ausleihen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("options.fxml"));
-
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    /**
+     * Wechselt auf das fxml File options.fxml beim Drücken von einem der Medium Buttons
+     * @param event Actionevent das durch einen der Medienbuttons ausgelöst wird
+     * @throws IOException wirft eine IOException bei Fehlern
+     */
     public void mediumPressed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("options.fxml"));
         Parent root = loader.load();
@@ -37,6 +36,7 @@ public class HomeController {
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
+        //Text des Labels wird zum gedrückten Medium geändert
         OptionController controller = loader.getController();
         controller.setLabeltext(buttonText);
 
@@ -44,6 +44,16 @@ public class HomeController {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+
+    public void showAllMedia(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("allMedia.fxml"));
+
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

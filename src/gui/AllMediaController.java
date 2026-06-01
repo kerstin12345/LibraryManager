@@ -14,12 +14,20 @@ public class AllMediaController {
     @FXML
     private Button closeButton;
 
-
+    /**
+     * Schließt das aktuelle Fenster
+     * @param event Actionevent das durch closeButton ausgelöst wurde
+     */
     public void closing(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Ändert das fxml File auf home.fxml
+     * @param event Actionevent das durch einen Button ausgelöst wird
+     * @throws IOException wirft eine IOException bei Fehlern
+     */
     public void goHome(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
 
@@ -30,6 +38,11 @@ public class AllMediaController {
         stage.show();
     }
 
+    /**
+     * Zeigt alle Medien der Liste<Medium> im Textfield listedMediunms an
+     * @param event Actionevent das durch einen Button ausgelöst wurde
+     * @throws IOException
+     */
     public void showAllMedia(ActionEvent event) throws IOException {
         //TO DO: Liste mit Medien auslesen und im textfield anzeigen
     }
