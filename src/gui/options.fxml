@@ -22,7 +22,7 @@
             <Button text="Zurück zum Start" onAction="#goHome"/>
             <VBox>
                 <Label fx:id="selectedMedium" text=""/>
-                <Label text="Geben Sie den Titel eines Mediums ein, un wählen Sie dann eine der unteren Optionen"/>
+                <Label text="Geben Sie Eigenschaften eines Mediums ein, und wählen Sie dann eine der unteren Optionen"/>
             </VBox>
         </HBox>
     </top>
@@ -69,5 +69,6 @@
     <bottom>
         <!--erst disable=false wenn alle benötigten parameter nicht mehr 0 sind-->
         <Button text="Speichern" disable="true"/>
+        <Button text="Suchen"/>
     </bottom>
 </BorderPane>
