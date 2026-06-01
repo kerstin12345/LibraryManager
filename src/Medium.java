@@ -10,6 +10,7 @@ public abstract class Medium {
     private int medCount;
     private String orLanguage;
 
+
     public Medium(String title, int year, String category, List<Integer> raiting, boolean isBorrowed,
         int borCount, int medCount, String orLanguage) {
         this.title = title;

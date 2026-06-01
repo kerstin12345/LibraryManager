@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AusleihController {
+public class AllMediaController {
     @FXML
     private Button closeButton;
 
@@ -29,4 +29,9 @@ public class AusleihController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void showAllMedia(ActionEvent event) throws IOException {
+        //TO DO: Liste mit Medien auslesen und im textfield anzeigen
+    }
+
 }

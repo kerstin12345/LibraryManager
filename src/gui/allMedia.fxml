@@ -8,20 +8,20 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.AusleihController"
+            fx:controller="gui.AllMediaController"
             maxHeight="1080"
             maxWidth="1920"
             minHeight="540"
             minWidth="970"
             prefHeight="864"
             prefWidth="1536">
-
     <top>
         <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
+
     </top>
     <left>
-        <Button text="CD"/>
-        <Button text="DVD"/>
-        <Button text="Buch"/>
+        <Button text="Sortieren"/>
+        <Button text="Alle Medien anzeigen" onAction="#showAllMedia"/>
+        <TextArea fx:id="listedMediums" text=""/>
     </left>
 </BorderPane>

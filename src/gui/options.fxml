@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="gui.OptionController"
+            maxHeight="1080"
+            maxWidth="1920"
+            minHeight="540"
+            minWidth="970"
+            prefHeight="864"
+            prefWidth="1536">
+
+    <top>
+        <HBox>
+            <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
+            <Button text="Zurück zum Start" onAction="#goHome"/>
+        </HBox>
+    </top>
+    <left>
+        <HBox>
+            <Label fx:id="selectedMedium" text=""/>
+            <Button fx:id="returnMedium" text="Medium zurück geben"/>
+            <Button fx:id="borrowMedium" text="Medium ausleihen"/>
+            <Button fx:id="addMedium" text="Medium hinzufügen"/>
+            <Button fx:id="removeMedium" text="Medium entfernen"/>
+        </HBox>
+    </left>
+</BorderPane>
