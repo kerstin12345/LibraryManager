@@ -6,13 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class AllMediaController {
     @FXML
     private Button closeButton;
+
+    @FXML
+    private TextArea mediaShowed;
 
     /**
      * Schließt das aktuelle Fenster
@@ -44,7 +53,11 @@ public class AllMediaController {
      * @throws IOException
      */
     public void showAllMedia(ActionEvent event) throws IOException {
-        //TO DO: Liste mit Medien auslesen und im textfield anzeigen
+        //TODO: schöne Ausgabe pro Attribut
+        List<String> allLines = Files.readAllLines(Paths.get("src/resources/media.csv"), Charset.forName("UTF-8"));
+        for (String line : allLines) {
+            mediaShowed.appendText(line + "\n");
+        }
     }
 
 }

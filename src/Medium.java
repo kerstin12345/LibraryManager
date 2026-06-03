@@ -4,7 +4,7 @@ public abstract class Medium {
     private String title;
     private int year;
     private String category;
-    private List<Integer> raiting;
+    private List<Integer> rating;
     private boolean isBorrowed;
     private int borCount;
     private int medCount;
@@ -16,7 +16,7 @@ public abstract class Medium {
         this.title = title;
         this.year = year;
         this.category = category;
-        this.raiting = raiting;
+        this.rating = raiting;
         this.isBorrowed = isBorrowed;
         this.borCount = borCount;
         this.medCount = medCount;
@@ -47,12 +47,12 @@ public abstract class Medium {
         this.category = category;
     }
 
-    public List<Integer> getRaiting() {
-        return raiting;
+    public List<Integer> getRating() {
+        return rating;
     }
 
-    public void setRaiting(List<Integer> raiting) {
-        this.raiting = raiting;
+    public void setRating(List<Integer> rating) {
+        this.rating = rating;
     }
 
     public boolean isBorrowed() {

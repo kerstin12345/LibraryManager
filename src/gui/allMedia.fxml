@@ -26,6 +26,8 @@
         <Button text="Alle Medien anzeigen" onAction="#showAllMedia"/>
     </left>
     <center>
-        <TextArea disable="true" text=""/>
+        <ScrollPane>
+            <TextArea fx:id="mediaShowed" disable="true" text="" style=""/>
+        </ScrollPane>
     </center>
 </BorderPane>
