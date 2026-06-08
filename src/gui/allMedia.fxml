@@ -13,8 +13,8 @@
             maxWidth="1920"
             minHeight="540"
             minWidth="970"
-            prefHeight="864"
-            prefWidth="1536">
+            prefHeight="540"
+            prefWidth="970">
     <top>
         <HBox>
             <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
