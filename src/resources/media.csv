@@ -1,1 +1,3 @@
-Titel;Jahr;Kategorie;Rating;Ausgeborgt;WieOftAusgeborgt;WieOftVorhanden;Sprache;Urheber;ExtraAttribut
+book;title;year;category;orLanguage;author;ISBN
+CD;title;year;category;orLanguage;artist;album
+DVD;title;year;category;orLanguage;director;FSK
