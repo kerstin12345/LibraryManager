@@ -17,58 +17,60 @@
             prefWidth="970">
 
     <top>
-        <HBox>
-            <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Medienverwaltung" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="selectedMedium" text=""/>
             <Button text="Zurück zum Start" onAction="#goHome"/>
-            <VBox>
-                <Label fx:id="selectedMedium" text=""/>
-                <Label text="Geben Sie Eigenschaften eines Mediums ein, und wählen Sie dann eine der unteren Optionen"/>
-            </VBox>
+            <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
         </HBox>
     </top>
     <center>
-        <HBox spacing="20" >
-            <!-- Linke Spalte: Labels -->
-            <VBox spacing="10" alignment="CENTER_RIGHT">
-                <Label text="Titel:"/>
-                <Label text="Jahr:"/>
-                <Label text="Kategorie:"/>
-                <Label text="Originalsprache:"/>
-                <Label text="Autor:"/>
-                <Label text="ISBN:"/>
-                <Label text="Regisseur:"/>
-                <Label text="FSK:"/>
-                <Label text="Künstler:"/>
-                <Label text="Album:"/>
-            </VBox>
+        <GridPane hgap="15" vgap="10" style="-fx-padding: 20;">
+            <Label text="Titel:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="title" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <!-- Rechte Spalte: Textfelder -->
-            <VBox spacing="10" alignment="CENTER_LEFT">
-                <TextField fx:id="title"/>
-                <TextField fx:id="published"/>
-                <TextField fx:id="category"/>
-                <TextField fx:id="originalLanguage"/>
-                <TextField fx:id="autor"/>
-                <TextField fx:id="isbn"/>
-                <TextField fx:id="director"/>
-                <TextField fx:id="fsk"/>
-                <TextField fx:id="artist"/>
-                <TextField fx:id="album"/>
-            </VBox>
-        </HBox>
+            <Label text="Jahr:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="published" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
+            <Label text="Kategorie:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="category" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Originalsprache:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="originalLanguage" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Autor:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="autor" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="ISBN:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="isbn" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Regisseur:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="director" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="FSK:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="fsk" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Künstler:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="artist" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+            <Label text="Album:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <TextField fx:id="album" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+        </GridPane>
     </center>
     <left>
-        <VBox>
-            <Button fx:id="borrowMedium" text="Medium ausleihen"/>
-            <Button fx:id="returnMedium" text="Medium zurück geben"/>
-            <Button fx:id="addMedium" text="Medium hinzufügen"/>
-            <Button fx:id="removeMedium" text="Medium entfernen" onAction="#removeMedium"/>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Button fx:id="borrowMedium" text="Ausleihen"/>
+            <Button fx:id="returnMedium" text="Zurückgeben"/>
+            <Button fx:id="addMedium" text="Hinzufügen"/>
+            <Button fx:id="removeMedium" text="Entfernen" onAction="#removeMedium"/>
         </VBox>
     </left>
     <bottom>
         <!--erst disable=false wenn alle benötigten parameter nicht mehr 0 sind-->
-        <Button text="Speichern" disable="true"/>
-        <Button text="Suchen"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+            <Button text="Speichern" fx:id="saveButton" disable="true"/>
+            <Button text="Suchen"/>
+        </HBox>
     </bottom>
 </BorderPane>
