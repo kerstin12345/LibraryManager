@@ -60,10 +60,10 @@
     </center>
     <left>
         <VBox>
-            <Button fx:id="borrowMedium" text="Medium ausleihen"/>
-            <Button fx:id="returnMedium" text="Medium zurück geben"/>
-            <Button fx:id="addMedium" text="Medium hinzufügen"/>
-            <Button fx:id="removeMedium" text="Medium entfernen" onAction="#removeMedium"/>
+            <Button fx:id="borrowMedium" text="function.Medium ausleihen"/>
+            <Button fx:id="returnMedium" text="function.Medium zurück geben"/>
+            <Button fx:id="addMedium" text="function.Medium hinzufügen"/>
+            <Button fx:id="removeMedium" text="function.Medium entfernen" onAction="#removeMedium"/>
         </VBox>
     </left>
     <bottom>

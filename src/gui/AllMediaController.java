@@ -48,7 +48,7 @@ public class AllMediaController {
     }
 
     /**
-     * Zeigt alle Medien der Liste<Medium> im Textfield listedMediunms an
+     * Zeigt alle Medien der Liste<function.Medium> im Textfield listedMediunms an
      * @param event Actionevent das durch einen Button ausgelöst wurde
      * @throws IOException
      */
