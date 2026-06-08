@@ -13,8 +13,8 @@
             maxWidth="1920"
             minHeight="540"
             minWidth="970"
-            prefHeight="864"
-            prefWidth="1536">
+            prefHeight="540"
+            prefWidth="970">
 
     <top>
         <HBox>
@@ -60,10 +60,10 @@
     </center>
     <left>
         <VBox>
-            <Button fx:id="returnMedium" text="Medium zurück geben"/>
             <Button fx:id="borrowMedium" text="Medium ausleihen"/>
+            <Button fx:id="returnMedium" text="Medium zurück geben"/>
             <Button fx:id="addMedium" text="Medium hinzufügen"/>
-            <Button fx:id="removeMedium" text="Medium entfernen"/>
+            <Button fx:id="removeMedium" text="Medium entfernen" onAction="#removeMedium"/>
         </VBox>
     </left>
     <bottom>

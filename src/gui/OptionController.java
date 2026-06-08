@@ -48,4 +48,9 @@ public class OptionController {
     public void setLabeltext(String text){
         selectedMedium.setText(text);
     }
+
+    //Nur Titel beim Entfernen und Ausborgen und Zurückgeben
+    public void removeMedium(ActionEvent event) throws IOException {
+
+    }
 }
