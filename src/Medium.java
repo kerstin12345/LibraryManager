@@ -1,5 +1,3 @@
-package function;
-
 import java.util.List;
 
 public abstract class Medium {

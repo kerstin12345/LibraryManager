@@ -25,7 +25,7 @@ public class HomeController {
     }
 
     /**
-     * Wechselt auf das fxml File options.fxml beim Drücken von einem der function.Medium Buttons
+     * Wechselt auf das fxml File options.fxml beim Drücken von einem der Medium Buttons
      * @param event Actionevent das durch einen der Medienbuttons ausgelöst wird
      * @throws IOException wirft eine IOException bei Fehlern
      */
@@ -36,7 +36,7 @@ public class HomeController {
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
-        //Text des Labels wird zum gedrückten function.Medium geändert
+        //Text des Labels wird zum gedrückten Medium geändert
         OptionController controller = loader.getController();
         controller.setLabeltext(buttonText);
 
