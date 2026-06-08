@@ -16,18 +16,32 @@
             prefHeight="540"
             prefWidth="970">
     <top>
-        <HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Medienverwaltung" style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
             <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
             <Button text="Zurück zum Start" onAction="#goHome"/>
         </HBox>
     </top>
     <left>
-        <Button text="Sortieren"/>
-        <Button text="Alle Medien anzeigen" onAction="#showAllMedia"/>
+        <VBox spacing="10" prefWidth="200">
+            <Label text="Aktionen" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Button text="Sortieren"/>
+            <Button text="Alle Medien anzeigen" onAction="#showAllMedia"/>
+        </VBox>
     </left>
     <center>
-        <ScrollPane>
-            <TextArea fx:id="mediaShowed" disable="true" text="" style=""/>
-        </ScrollPane>
+        <VBox spacing="10" style="-fx-padding: 15;">
+
+            <Label text="Medienübersicht"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true">
+                <content>
+                    <TextArea fx:id="mediaShowed" editable="false" wrapText="true" style="-fx-font-family: Consolas; -fx-font-size: 14px;"/>
+                </content>
+            </ScrollPane>
+
+        </VBox>
     </center>
 </BorderPane>
