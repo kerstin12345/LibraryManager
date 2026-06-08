@@ -98,11 +98,12 @@ public class LibraryManager {
         });
     }
 
+    //nach dem Jahr sortieren
     public void sortByYear() {
         Collections.sort(media, new Comparator<Medium>() {
             @Override
             public int compare(Medium m1, Medium m2) {
-                return m2.getYear() - m1.getYear();
+                return m2.getYear() - m1.getYear(); //wenn das ergebnis negativ ist, soll m1 vor m2 stehen
             }
         });
     }
