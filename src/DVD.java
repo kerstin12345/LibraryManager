@@ -22,4 +22,10 @@ public class DVD extends Medium{
     public void setFSK(int FSK) {
         this.FSK = FSK;
     }
+
+    @Override
+    public String toString() {
+        return "DVD{ " +getTitle() +", " +getCategory() +
+                " }";
+    }
 }

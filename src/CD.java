@@ -22,4 +22,10 @@ public class CD extends Medium{
     public void setAlbum(String album) {
         this.album = album;
     }
+
+    @Override
+    public String toString() {
+        return "CD{ " +getTitle() +", " +getCategory() +
+                " }";
+    }
 }

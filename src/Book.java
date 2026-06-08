@@ -22,4 +22,10 @@ public class Book extends Medium{
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
+
+    @Override
+    public String toString() {
+        return "Book{ " +getTitle() +", " +getCategory() +
+                " }";
+    }
 }
