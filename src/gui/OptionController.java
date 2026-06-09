@@ -116,7 +116,7 @@ public class OptionController {
             System.out.println("medium is not a valid medium");
         }
 
-        String line = "";
+        String line = medium+";";
         while (attributes.size() > 0) {
             line += attributes.get(0);
             if (attributes.size() > 1) {
