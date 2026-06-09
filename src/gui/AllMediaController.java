@@ -23,6 +23,8 @@ public class AllMediaController {
     @FXML
     private TextArea mediaShowed;
 
+
+
     /**
      * Schließt das aktuelle Fenster
      * @param event Actionevent das durch closeButton ausgelöst wurde

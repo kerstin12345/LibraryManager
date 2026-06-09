@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//import function.LibraryManager;
+import function.LibraryManager;
 
 import java.io.IOException;
 
@@ -16,7 +16,11 @@ public class HomeController {
     @FXML
     private Button closeButton;
 
-    //private function.LibraryManager libraryManager;
+    private LibraryManager libraryManager;
+
+    public void setLibraryManager(LibraryManager manager) {
+        this.libraryManager = manager;
+    }
 
     /**
      * Schließt das aktuelle Fenster

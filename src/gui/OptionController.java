@@ -17,6 +17,12 @@ public class OptionController {
     @FXML
     private Label selectedMedium;
 
+    private function.LibraryManager libraryManager;
+
+    public void setLibraryManager(function.LibraryManager libraryManager) {
+        this.libraryManager = libraryManager;
+    }
+
     /**
      * Schließt das aktuelle Fenster in dem sich closeButton befindet
      * @param event Actionevent das durch das Drücken von closeButton ausgelöst wird
@@ -51,6 +57,10 @@ public class OptionController {
 
     //Nur Titel beim Entfernen und Ausborgen und Zurückgeben
     public void removeMedium(ActionEvent event) throws IOException {
-
+        if(libraryManager == null){
+            System.out.println("libraryManager is null");
+            return;
+        }
+        libraryManager.removeMedium(selectedMedium.getText());
     }
 }
