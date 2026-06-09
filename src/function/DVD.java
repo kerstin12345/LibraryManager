@@ -1,3 +1,5 @@
+package function;
+
 public class DVD extends Medium{
     private String director;
     private int FSK;
@@ -23,7 +25,7 @@ public class DVD extends Medium{
 
     @Override
     public String toString() {
-        return "DVD{ " +getTitle() +", " +getCategory() +
+        return "function.DVD{ " +getTitle() +", " +getCategory() +
                 " }";
     }
 }

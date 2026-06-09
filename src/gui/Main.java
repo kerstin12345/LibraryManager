@@ -12,10 +12,24 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        //xml einbinden
+        /*//xml einbinden
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
 
         //Stage/Scene
+        Scene scene = new Scene(root);
+        stage.setTitle("Bibliothek");
+        stage.setScene(scene);
+        stage.show();*/
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent root = loader.load();
+
+        // Controller holen
+        HomeController controller = loader.getController();
+
+        // function.LibraryManager übergeben
+        controller.setLibraryManager(libraryManager);
+
+        // Stage/Scene
         Scene scene = new Scene(root);
         stage.setTitle("Bibliothek");
         stage.setScene(scene);

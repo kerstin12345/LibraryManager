@@ -24,8 +24,8 @@
     </top>
     <center>
         <HBox>
-            <Button text="CD" onAction="#mediumPressed"/>
-            <Button text="DVD" onAction="#mediumPressed"/>
+            <Button text="function.CD" onAction="#mediumPressed"/>
+            <Button text="function.DVD" onAction="#mediumPressed"/>
             <Button text="Buch" onAction="#mediumPressed"/>
             <Button text="Alle Medien" onAction="#showAllMedia"/>
         </HBox>

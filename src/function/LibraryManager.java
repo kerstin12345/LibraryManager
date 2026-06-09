@@ -1,3 +1,5 @@
+package function;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +21,7 @@ public class LibraryManager {
 
     }
 
-    private List<Medium> media = new ArrayList<>();
+    public List<Medium> media = new ArrayList<>();
 
     public List<Medium> getMedia() {
         return media;
@@ -31,7 +33,7 @@ public class LibraryManager {
                 "}";
     }
 
-    // Medium in liste hinzufügen
+    // function.Medium in liste hinzufügen
     public void addMedium(String line){
         String[] parts = line.split(";");
         if (parts.length < 7) { //wenn was fehlt
@@ -78,7 +80,7 @@ public class LibraryManager {
         }
     }
 
-    // Medium aus liste entfernen, nach Titel
+    // function.Medium aus liste entfernen, nach Titel
     public void removeMedium(String title) {
         for (int i = 0; i < media.size(); i++) {
             if (media.get(i).getTitle().equalsIgnoreCase(title)) {

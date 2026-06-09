@@ -8,12 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+//import function.LibraryManager;
 
 import java.io.IOException;
 
 public class HomeController {
     @FXML
     private Button closeButton;
+
+    //private function.LibraryManager libraryManager;
 
     /**
      * Schließt das aktuelle Fenster
@@ -25,7 +28,7 @@ public class HomeController {
     }
 
     /**
-     * Wechselt auf das fxml File options.fxml beim Drücken von einem der Medium Buttons
+     * Wechselt auf das fxml File options.fxml beim Drücken von einem der function.Medium Buttons
      * @param event Actionevent das durch einen der Medienbuttons ausgelöst wird
      * @throws IOException wirft eine IOException bei Fehlern
      */
@@ -36,7 +39,7 @@ public class HomeController {
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
-        //Text des Labels wird zum gedrückten Medium geändert
+        //Text des Labels wird zum gedrückten function.Medium geändert
         OptionController controller = loader.getController();
         controller.setLabeltext(buttonText);
 

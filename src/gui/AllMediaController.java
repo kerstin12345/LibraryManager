@@ -48,16 +48,17 @@ public class AllMediaController {
     }
 
     /**
-     * Zeigt alle Medien der Liste<Medium> im Textfield listedMediunms an
+     * Zeigt alle Medien der Liste<function.Medium> im Textfield listedMediunms an
      * @param event Actionevent das durch einen Button ausgelöst wurde
      * @throws IOException
      */
     public void showAllMedia(ActionEvent event) throws IOException {
         //TODO: schöne Ausgabe pro Attribut
-        List<String> allLines = Files.readAllLines(Paths.get("src/resources/media.csv"), Charset.forName("UTF-8"));
+/*
+        List<String> allLines = ;
         for (String line : allLines) {
             mediaShowed.appendText(line + "\n");
-        }
+        }*/
     }
 
 }

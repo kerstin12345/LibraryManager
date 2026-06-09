@@ -1,3 +1,5 @@
+package function;
+
 public class Book extends Medium{
     private String author;
     private String ISBN;
@@ -23,7 +25,7 @@ public class Book extends Medium{
 
     @Override
     public String toString() {
-        return "Book{ " +getTitle() +", " +getCategory() +
+        return "function.Book{ " +getTitle() +", " +getCategory() +
                 " }";
     }
 }

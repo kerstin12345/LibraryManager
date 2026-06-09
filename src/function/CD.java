@@ -1,3 +1,5 @@
+package function;
+
 public class CD extends Medium{
     private String artist;
     private String album;
@@ -23,7 +25,7 @@ public class CD extends Medium{
 
     @Override
     public String toString() {
-        return "CD{ " +getTitle() +", " +getCategory() +
+        return "function.CD{ " +getTitle() +", " +getCategory() +
                 " }";
     }
 }
