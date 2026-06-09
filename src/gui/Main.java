@@ -19,7 +19,6 @@ public class Main extends Application {
     private static LibraryManager libraryManager = new LibraryManager();
 
 
-
     public static void main(String[] args) {
         try {
             libraryManager.readFile("src/resources/media.csv");
