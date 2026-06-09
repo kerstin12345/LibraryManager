@@ -82,13 +82,21 @@ public class LibraryManager {
     }
 
     // function.Medium aus liste entfernen, nach Titel
-    public void removeMedium(String title) {
+    public boolean removeMedium(String title, String type) {
         for (int i = 0; i < media.size(); i++) {
-            if (media.get(i).getTitle().equalsIgnoreCase(title)) {
+            Medium m = media.get(i);
+            boolean sameTitle = m.getTitle().equalsIgnoreCase(title);
+            boolean sameType =
+                    (type.equalsIgnoreCase("Book") && m instanceof Book) ||
+                            (type.equalsIgnoreCase("CD") && m instanceof CD) ||
+                            (type.equalsIgnoreCase("DVD") && m instanceof DVD);
+
+            if (sameTitle && sameType) {
                 media.remove(i);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     public void writeFile(String path) {

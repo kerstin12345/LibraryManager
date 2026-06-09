@@ -26,7 +26,18 @@
     <left>
         <VBox spacing="10" prefWidth="200">
             <Label text="Aktionen" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-            <Button text="Sortieren"/>
+            <Button text="Sortieren" onAction="#showSortOptions"/>
+            <Button fx:id="borrowedMediaButton"
+                    text="Ausgeliehenen"
+                    onAction="#showBorrowedMedia"
+                    visible="false"
+                    managed="false"/>
+            <Button fx:id="sortTitleButton"
+                    text="Alphabetisch nach Titel sortieren"
+                    visible="false"
+                    managed="false"
+                    onAction="#sortByTitle"/>
+
             <Button text="Alle Medien anzeigen" onAction="#showAllMedia"/>
         </VBox>
     </left>

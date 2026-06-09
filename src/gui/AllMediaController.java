@@ -25,6 +25,12 @@ public class AllMediaController {
     @FXML
     private TextArea mediaShowed;
 
+    @FXML
+    private Button borrowedMediaButton;
+
+    @FXML
+    private Button sortTitleButton;
+
     /**
      * Die gemeinsam genutzte Instanz des LibraryManagers
      * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
@@ -78,9 +84,40 @@ public class AllMediaController {
      */
     public void showAllMedia(ActionEvent event) throws IOException {
         //TODO: schöne Ausgabe pro Attribut
+        mediaShowed.clear(); //damit es leer ist
         for (Medium medium : this.libraryManager.media) {
             mediaShowed.appendText(medium.toString() + "\n");
         }
     }
 
+    public void showBorrowedMedia(ActionEvent event) {
+        mediaShowed.clear();
+
+        for (Medium medium : libraryManager.getMedia()) {
+            if (medium.isBorrowed()) {
+                mediaShowed.appendText(medium.toString() + "\n");
+            }
+        }
+    }
+
+    public void showSortOptions(ActionEvent event) {
+        boolean sichtbar = borrowedMediaButton.isVisible();
+
+        borrowedMediaButton.setVisible(!sichtbar);
+        borrowedMediaButton.setManaged(!sichtbar);
+
+        sortTitleButton.setVisible(!sichtbar);
+        sortTitleButton.setManaged(!sichtbar);
+    }
+
+    public void sortByTitle(ActionEvent event) {
+
+        libraryManager.sortByTitle();
+
+        mediaShowed.clear();
+
+        for (Medium medium : libraryManager.getMedia()) {
+            mediaShowed.appendText(medium.toString() + "\n");
+        }
+    }
 }

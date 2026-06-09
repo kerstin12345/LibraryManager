@@ -122,14 +122,18 @@ public class OptionController {
             return;
         }
         String titleText = title.getText().trim();
+        String type = selectedMedium.getText();
         if (titleText.isEmpty()) {
             System.out.println("Kein Titel eingegeben.");
             return;
         }
-        libraryManager.removeMedium(titleText);
-        // Felder leeren nach dem Entfernen
-        clearFields();
-        System.out.println("Medium wurde erfolgreich entfernt");
+        boolean removed = libraryManager.removeMedium(titleText, type);
+        if (removed) {
+            clearFields();
+            System.out.println(type + " wurde erfolgreich entfernt.");
+        } else {
+            System.out.println(type + " mit diesem Titel wurde nicht gefunden.");
+        }
     }
 
     /**
