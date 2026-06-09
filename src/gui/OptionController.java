@@ -98,10 +98,11 @@ public class OptionController {
         libraryManager.removeMedium(titleText);
         // Felder leeren nach dem Entfernen
         clearFields();
+        System.out.println("Medium wurde erfolgreich entfernt");
     }
 
     /**
-     * Leert alle Eingabefelder
+     * Leert alle Eingabefelder um neuen Eintrag zu machen
      */
     private void clearFields() {
         title.clear();
@@ -153,5 +154,15 @@ public class OptionController {
 
         libraryManager.addMedium(line);
         //To do: Fehlerbehandlung
+        clearFields();
+        System.out.println("Medium wurde erfolgreich hinzugefügt");
+    }
+
+    public void borrowMedium(ActionEvent event) throws IOException {
+        //TODO: attribut ausgeborgt auf true setzen
+    }
+
+    public void returnMedium(ActionEvent event) throws IOException {
+        //TODO: attribut ausgeborgt auf false setzen
     }
 }

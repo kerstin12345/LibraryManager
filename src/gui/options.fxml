@@ -60,8 +60,8 @@
     </center>
     <left>
         <VBox spacing="10" style="-fx-padding: 10;">
-            <Button fx:id="borrowMedium" text="Ausleihen"/>
-            <Button fx:id="returnMedium" text="Zurückgeben"/>
+            <Button fx:id="borrowMedium" text="Ausleihen" onAction="#borrowMedium"/>
+            <Button fx:id="returnMedium" text="Zurückgeben" onAction="#returnMedium"/>
             <Button fx:id="addMedium" text="Hinzufügen" onAction="#addMedium"/>
             <Button fx:id="removeMedium" text="Entfernen" onAction="#removeMedium"/>
         </VBox>
