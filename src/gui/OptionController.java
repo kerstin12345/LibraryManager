@@ -1,5 +1,6 @@
 package gui;
 
+import function.Medium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,19 +29,6 @@ public class OptionController {
     private TextField category;
     @FXML
     private TextField originalLanguage;
-    @FXML
-    private TextField autor;
-    @FXML
-    private TextField isbn;
-    @FXML
-    private TextField director;
-    @FXML
-    private TextField fsk;
-    @FXML
-    private TextField artist;
-    @FXML
-    private TextField album;
-
     @FXML
     private Label extraLabel1;
     @FXML
@@ -108,24 +96,15 @@ public class OptionController {
 
         if (text.equalsIgnoreCase("Book")) {
             extraLabel1.setText("Autor");
-            extraField1.setPromptText("Autor eingeben");
-
             extraLabel2.setText("ISBN");
-            extraField2.setPromptText("ISBN eingeben");
 
         } else if (text.equalsIgnoreCase("CD")) {
             extraLabel1.setText("Artist");
-            extraField1.setPromptText("Artist eingeben");
-
             extraLabel2.setText("Album");
-            extraField2.setPromptText("Album eingeben");
 
         } else if (text.equalsIgnoreCase("DVD")) {
             extraLabel1.setText("Director");
-            extraField1.setPromptText("Director eingeben");
-
             extraLabel2.setText("FSK");
-            extraField2.setPromptText("FSK eingeben");
         }
 
         extraField1.clear();
@@ -161,49 +140,6 @@ public class OptionController {
         extraField2.clear();
     }
 
-//    public void addMedium(ActionEvent event) throws IOException {
-//        if (libraryManager == null) {
-//            System.out.println("libraryManager is null");
-//            return;
-//        }
-//        //Objekt wird ertsellt und in Liste ; gertrennt line
-//        String medium = selectedMedium.getText();
-//        List<String> attributes = new ArrayList<>();
-//        attributes.add(title.getText());
-//        attributes.add(published.getText());
-//        attributes.add(category.getText());
-//        attributes.add(originalLanguage.getText());
-//
-//        if (medium.equalsIgnoreCase("DVD")) {
-//            attributes.add(director.getText());
-//            attributes.add(fsk.getText());
-//        } else if (medium.equalsIgnoreCase("CD")) {
-//            attributes.add(artist.getText());
-//            attributes.add(album.getText());
-//        } else if (medium.equalsIgnoreCase("Book")) {
-//            attributes.add(autor.getText());
-//            attributes.add(isbn.getText());
-//        } else {
-//            System.out.println("medium is not a valid medium");
-//        }
-//
-//        String line = medium + ";";
-//        while (attributes.size() > 0) {
-//            line += attributes.get(0);
-//            if (attributes.size() > 1) {
-//                line += ";";
-//            }
-//            attributes.remove(0);
-//        }
-//
-//        //Methode von LibraryManager
-//        libraryManager.addMedium(line);
-//
-//        //To do: Fehlerbehandlung
-//        clearFields();
-//        System.out.println("Medium wurde erfolgreich hinzugefügt");
-//    }
-
     public void addMedium(ActionEvent event) throws IOException {
 
         String medium = selectedMedium.getText();
@@ -215,7 +151,6 @@ public class OptionController {
         attributes.add(category.getText());
         attributes.add(originalLanguage.getText());
 
-        // HIER
         attributes.add(extraField1.getText());
         attributes.add(extraField2.getText());
 
@@ -228,10 +163,42 @@ public class OptionController {
     }
 
     public void borrowMedium(ActionEvent event) throws IOException {
+        String whichMedium = selectedMedium.getText();
         //TODO: attribut ausgeborgt auf true setzen
-    }
+            if (libraryManager == null) {
+                System.out.println("libraryManager is null");
+                return;
+            }
+
+            String titleText = title.getText().trim();
+
+            //wenn kein text gefunden, methode beenden
+            if (titleText.isEmpty()) {
+                System.out.println("Kein Titel eingegeben.");
+                return;
+            }
+
+            for (Medium medium : libraryManager.getMedia()) {
+                if (medium.getTitle().equalsIgnoreCase(titleText)) {
+
+
+                    if (medium.isBorrowed()) {
+                        System.out.println(whichMedium+" ist bereits ausgeliehen.");
+                        return;
+                    }
+
+                    medium.setBorrowed(true);
+                    System.out.println(whichMedium+" wurde ausgeliehen.");
+                    clearFields();
+                    return;
+                }
+            }
+
+            System.out.println(whichMedium+" nicht gefunden.");
+        }
 
     public void returnMedium(ActionEvent event) throws IOException {
         //TODO: attribut ausgeborgt auf false setzen
     }
+
 }
