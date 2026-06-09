@@ -1,18 +1,18 @@
 book;title;year;category;orLanguage;author;ISBN
-function.CD;title;year;category;orLanguage;artist;album
-function.DVD;title;year;category;orLanguage;director;FSK
-function.Book;Der Herr der Ringe;1954;Fantasy;Deutsch;J.R.R. Tolkien;9783608939846
-function.CD;Back in Black;1980;Rock;Englisch;AC/DC;Back in Black
-function.DVD;The Dark Knight;2008;Action;Englisch;Christopher Nolan;16
-function.Book;Harry Potter und der Stein der Weisen;1997;Fantasy;Deutsch;J.K. Rowling;9783551551672
-function.Book;Faust;1808;Drama;Deutsch;Johann Wolfgang von Goethe;9783150000012
-function.CD;The Eminem Show;2002;Hip-Hop;Englisch;Eminem;The Eminem Show
-function.CD;21;2011;Pop;Englisch;Adele;21
-function.CD;Mutter;2001;Metal;Deutsch;Rammstein;Mutter
-function.DVD;Inception;2010;Science Fiction;Englisch;Christopher Nolan;12
-function.DVD;Der Herr der Ringe: Die Gefährten;2001;Fantasy;Deutsch;Peter Jackson;12
-function.DVD;Titanic;1997;Drama;Englisch;James Cameron;12
-function.Book;Sherlock Holmes;1892;Krimi;Deutsch;Arthur Conan Doyle;9783499221006
-function.Book;1984;1949;Science Fiction;Englisch;George Orwell;9780451524935
-function.CD;Thriller;1982;Pop;Englisch;Michael Jackson;Thriller
-function.DVD;Findet Nemo;2003;Animation;Deutsch;Andrew Stanton;0
+CD;title;year;category;orLanguage;artist;album
+DVD;title;year;category;orLanguage;director;FSK
+Book;Der Herr der Ringe;1954;Fantasy;Deutsch;J.R.R. Tolkien;9783608939846
+CD;Back in Black;1980;Rock;Englisch;AC/DC;Back in Black
+DVD;The Dark Knight;2008;Action;Englisch;Christopher Nolan;16
+Book;Harry Potter und der Stein der Weisen;1997;Fantasy;Deutsch;J.K. Rowling;9783551551672
+Book;Faust;1808;Drama;Deutsch;Johann Wolfgang von Goethe;9783150000012
+CD;The Eminem Show;2002;Hip-Hop;Englisch;Eminem;The Eminem Show
+CD;21;2011;Pop;Englisch;Adele;21
+CD;Mutter;2001;Metal;Deutsch;Rammstein;Mutter
+DVD;Inception;2010;Science Fiction;Englisch;Christopher Nolan;12
+DVD;Der Herr der Ringe: Die Gefährten;2001;Fantasy;Deutsch;Peter Jackson;12
+DVD;Titanic;1997;Drama;Englisch;James Cameron;12
+Book;Sherlock Holmes;1892;Krimi;Deutsch;Arthur Conan Doyle;9783499221006
+Book;1984;1949;Science Fiction;Englisch;George Orwell;9780451524935
+CD;Thriller;1982;Pop;Englisch;Michael Jackson;Thriller
+DVD;Findet Nemo;2003;Animation;Deutsch;Andrew Stanton;0

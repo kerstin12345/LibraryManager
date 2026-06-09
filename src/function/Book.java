@@ -25,7 +25,6 @@ public class Book extends Medium{
 
     @Override
     public String toString() {
-        return "function.Book{ " +getTitle() +", " +getCategory() +
-                " }";
+        return super.toString()+author+ISBN;
     }
 }

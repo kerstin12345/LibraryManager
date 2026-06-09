@@ -25,7 +25,6 @@ public class DVD extends Medium{
 
     @Override
     public String toString() {
-        return "function.DVD{ " +getTitle() +", " +getCategory() +
-                " }";
+        return super.toString()+director+FSK;
     }
 }

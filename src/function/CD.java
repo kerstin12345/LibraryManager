@@ -25,7 +25,6 @@ public class CD extends Medium{
 
     @Override
     public String toString() {
-        return "function.CD{ " +getTitle() +", " +getCategory() +
-                " }";
+        return super.toString()+artist+album;
     }
 }

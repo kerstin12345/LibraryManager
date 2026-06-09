@@ -19,6 +19,16 @@ public abstract class Medium {
         this.orLanguage = orLanguage;
     }
 
+    @Override
+    public String toString() {
+        return "Medium{" +
+                "title='" + title + '\'' +
+                ", year=" + year +
+                ", category='" + category + '\'' +
+                ", orLanguage='" + orLanguage + '\'' +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }

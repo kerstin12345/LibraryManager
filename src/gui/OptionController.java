@@ -63,12 +63,15 @@ public class OptionController {
      * @throws IOException wirft eine IOException bei Fehlern
      */
     public void goHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent root = loader.load();
+
+        // LibraryManager an HomeController übergeben, damit die Liste erhalten bleibt
+        HomeController controller = loader.getController();
+        controller.setLibraryManager(libraryManager);
 
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 
@@ -87,7 +90,30 @@ public class OptionController {
             System.out.println("libraryManager is null");
             return;
         }
-        libraryManager.removeMedium(selectedMedium.getText());
+        String titleText = title.getText().trim();
+        if (titleText.isEmpty()) {
+            System.out.println("Kein Titel eingegeben.");
+            return;
+        }
+        libraryManager.removeMedium(titleText);
+        // Felder leeren nach dem Entfernen
+        clearFields();
+    }
+
+    /**
+     * Leert alle Eingabefelder
+     */
+    private void clearFields() {
+        title.clear();
+        published.clear();
+        category.clear();
+        originalLanguage.clear();
+        autor.clear();
+        isbn.clear();
+        director.clear();
+        fsk.clear();
+        artist.clear();
+        album.clear();
     }
 
     public void addMedium(ActionEvent event) throws IOException {
@@ -126,5 +152,6 @@ public class OptionController {
         }
 
         libraryManager.addMedium(line);
+        //To do: Fehlerbehandlung
     }
 }

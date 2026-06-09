@@ -47,12 +47,15 @@ public class AllMediaController {
      * @throws IOException wirft eine IOException bei Fehlern
      */
     public void goHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent root = loader.load();
+
+        // LibraryManager an HomeController übergeben
+        HomeController controller = loader.getController();
+        controller.setLibraryManager(libraryManager);
 
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 
