@@ -1,6 +1,7 @@
 package gui;
 
 import function.LibraryManager;
+import function.Medium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,11 +63,9 @@ public class AllMediaController {
      */
     public void showAllMedia(ActionEvent event) throws IOException {
         //TODO: schöne Ausgabe pro Attribut
-/*
-        List<String> allLines = ;
-        for (String line : allLines) {
-            mediaShowed.appendText(line + "\n");
-        }*/
+        for(Medium medium : this.libraryManager.media){
+            mediaShowed.appendText(medium.toString() + "\n");
+        }
     }
 
 }
