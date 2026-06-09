@@ -25,15 +25,25 @@ public class AllMediaController {
     @FXML
     private TextArea mediaShowed;
 
+    /**
+     * Die gemeinsam genutzte Instanz des LibraryManagers
+     * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
+     */
     private LibraryManager libraryManager;
 
-    public void setLibraryManager(LibraryManager manager) {
-        this.libraryManager = manager;
+    /**
+     * Setzt libraryManager für den aktuellen Controller
+     *
+     * @param libraryManager gemeinsam genutze Instanz -> darf nicht 0 sein
+     */
+    public void setLibraryManager(LibraryManager libraryManager) {
+        this.libraryManager = libraryManager;
     }
 
 
     /**
      * Schließt das aktuelle Fenster
+     *
      * @param event Actionevent das durch closeButton ausgelöst wurde
      */
     public void closing(ActionEvent event) {
@@ -43,6 +53,7 @@ public class AllMediaController {
 
     /**
      * Ändert das fxml File auf home.fxml
+     *
      * @param event Actionevent das durch einen Button ausgelöst wird
      * @throws IOException wirft eine IOException bei Fehlern
      */
@@ -61,12 +72,13 @@ public class AllMediaController {
 
     /**
      * Zeigt alle Medien der Liste<function.Medium> im Textfield listedMediunms an
+     *
      * @param event Actionevent das durch einen Button ausgelöst wurde
      * @throws IOException
      */
     public void showAllMedia(ActionEvent event) throws IOException {
         //TODO: schöne Ausgabe pro Attribut
-        for(Medium medium : this.libraryManager.media){
+        for (Medium medium : this.libraryManager.media) {
             mediaShowed.appendText(medium.toString() + "\n");
         }
     }

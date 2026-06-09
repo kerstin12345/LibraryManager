@@ -40,8 +40,17 @@ public class OptionController {
     @FXML
     private TextField album;
 
+    /**
+     * Die gemeinsam genutzte Instanz des LibraryManagers
+     * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
+     */
     private function.LibraryManager libraryManager;
 
+    /**
+     * Setzt libraryManager für den aktuellen Controller
+     *
+     * @param libraryManager gemeinsam genutze Instanz -> darf nicht 0 sein
+     */
     public void setLibraryManager(function.LibraryManager libraryManager) {
         this.libraryManager = libraryManager;
     }
@@ -143,7 +152,7 @@ public class OptionController {
             System.out.println("medium is not a valid medium");
         }
 
-        String line = medium+";";
+        String line = medium + ";";
         while (attributes.size() > 0) {
             line += attributes.get(0);
             if (attributes.size() > 1) {

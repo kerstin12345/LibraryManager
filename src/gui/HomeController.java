@@ -16,14 +16,24 @@ public class HomeController {
     @FXML
     private Button closeButton;
 
+    /**
+     * Die gemeinsam genutzte Instanz des LibraryManagers
+     * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
+     */
     private LibraryManager libraryManager;
 
-    public void setLibraryManager(LibraryManager manager) {
-        this.libraryManager = manager;
+    /**
+     * Setzt libraryManager für den aktuellen Controller
+     *
+     * @param libraryManager gemeinsam genutze Instanz -> darf nicht 0 sein
+     */
+    public void setLibraryManager(LibraryManager libraryManager) {
+        this.libraryManager = libraryManager;
     }
 
     /**
      * Schließt das aktuelle Fenster
+     *
      * @param event Actionevent das durch das Klicken von closeButton ausgelöst wird
      */
     public void closing(ActionEvent event) {
@@ -33,6 +43,7 @@ public class HomeController {
 
     /**
      * Wechselt auf das fxml File options.fxml beim Drücken von einem der function.Medium Buttons
+     *
      * @param event Actionevent das durch einen der Medienbuttons ausgelöst wird
      * @throws IOException wirft eine IOException bei Fehlern
      */
