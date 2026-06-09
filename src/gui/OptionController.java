@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,7 +162,9 @@ public class OptionController {
             attributes.remove(0);
         }
 
+        //Methode von LibraryManager
         libraryManager.addMedium(line);
+
         //To do: Fehlerbehandlung
         clearFields();
         System.out.println("Medium wurde erfolgreich hinzugefügt");

@@ -12,12 +12,13 @@ import java.util.List;
 
 public class LibraryManager {
     public static void main(String[] args) {
-        //zum testen
-        LibraryManager libraryManager = new LibraryManager();
-        libraryManager.readFile(String.valueOf(Paths.get("src/resources/media.csv")));
-        System.out.println("VORHER: "+libraryManager.media);
-        libraryManager.sortByTitle();
-        System.out.println("NACHHER, Alphabetisch: "+libraryManager.media);
+//        zum testen
+//        LibraryManager libraryManager = new LibraryManager();
+//        libraryManager.readFile(String.valueOf(Paths.get("src/resources/media.csv")));
+//        System.out.println("VORHER: "+libraryManager.media);
+//        libraryManager.sortByTitle();
+//        System.out.println("NACHHER, Alphabetisch: "+libraryManager.media);
+
 
     }
 
@@ -87,6 +88,52 @@ public class LibraryManager {
                 media.remove(i);
                 return;
             }
+        }
+    }
+
+    public void writeFile(String path) {
+        List<String> lines = new ArrayList<>();
+
+        // Kopfzeilen
+        lines.add("book;title;year;category;orLanguage;author;ISBN");
+        lines.add("CD;title;year;category;orLanguage;artist;album");
+        lines.add("DVD;title;year;category;orLanguage;director;FSK");
+
+        for (Medium m : media) {
+
+            if (m instanceof Book b) {
+
+                lines.add("Book;" + b.getTitle() + ";" +
+                        b.getYear() + ";" +
+                        b.getCategory() + ";" +
+                        b.getOrLanguage() + ";" +
+                        b.getAuthor() + ";" +
+                        b.getISBN());
+
+            } else if (m instanceof CD c) {
+                lines.add("CD;" +
+                        c.getTitle() + ";" +
+                        c.getYear() + ";" +
+                        c.getCategory() + ";" +
+                        c.getOrLanguage() + ";" +
+                        c.getArtist() + ";" +
+                        c.getAlbum());
+
+            } else if (m instanceof DVD d) {
+                lines.add("DVD;" +
+                        d.getTitle() + ";" +
+                        d.getYear() + ";" +
+                        d.getCategory() + ";" +
+                        d.getOrLanguage() + ";" +
+                        d.getDirector() + ";" +
+                        d.getFSK());
+            }
+        }
+
+        try {
+            Files.write(Paths.get(path), lines);
+        } catch (IOException e) {
+            System.out.println("Fehler beim Schreiben der Datei!");
         }
     }
 
