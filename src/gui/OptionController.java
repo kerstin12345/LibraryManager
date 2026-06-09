@@ -91,6 +91,10 @@ public class OptionController {
     }
 
     public void addMedium(ActionEvent event) throws IOException {
+        if (libraryManager == null) {
+            System.out.println("libraryManager is null");
+            return;
+        }
         //Objekt wird ertsellt und in Liste ; gertrennt line
         String medium = selectedMedium.getText();
         List<String> attributes = new ArrayList<>();
