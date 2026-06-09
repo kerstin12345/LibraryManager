@@ -12,7 +12,6 @@ public class Main extends Application {
     private LibraryManager libraryManager = new LibraryManager();
 
 
-
     public static void main(String[] args) {
         launch(args);
     }
