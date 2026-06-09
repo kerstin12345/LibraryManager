@@ -1,0 +1,24 @@
+* [33med00de0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Testanzeige allMedia
+* [33m4bf5347[m Tabellenartige Ansicht allemedien
+* [33mfe9b736[m Alle Medien Ansicht und Szene wecheln
+* [33mb3161d9[m Szenenwechsel in Options und wieder zurück
+* [33md7e6a90[m fxml basic
+* [33m51b7f8b[m ornder
+* [33m35011f1[m ornder
+*   [33me54cff4[m Merge remote-tracking branch 'origin/master'
+[32m|[m[33m\[m  
+[32m|[m *   [33mf22ea52[m Merge remote-tracking branch 'origin/master'
+[32m|[m [34m|[m[35m\[m  
+[32m|[m * [35m|[m [33mc14fe5e[m fxml korrekt eingebunden
+* [35m|[m [35m|[m [33mb3a5b4c[m klassen verbessert
+[35m|[m [35m|[m[35m/[m  
+[35m|[m[35m/[m[35m|[m   
+* [35m|[m [33md3d21f8[m attribute definiert
+[35m|[m[35m/[m  
+*   [33m981b052[m Merge remote-tracking branch 'origin/master'
+[36m|[m[1;31m\[m  
+[36m|[m * [33md35938f[m GUI fxml
+* [1;31m|[m [33mfb066fe[m klassenerstellt
+[1;31m|[m[1;31m/[m  
+* [33m36beaca[m ines
+* [33mad96022[m testcommit
