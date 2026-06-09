@@ -4,8 +4,7 @@ public class Book extends Medium{
     private String author;
     private String ISBN;
 
-    public Book(String title, int year, String category, String orLanguage,
-                boolean isBorrowed, int borCount, int medCount, String author, String ISBN) {
+    public Book(String title, int year, String category, String orLanguage, boolean isBorrowed, int borCount, int medCount, String author, String ISBN) {
         super( title,  year,  category,  orLanguage,
          isBorrowed,  borCount,  medCount);
         this.author = author;
@@ -27,6 +26,12 @@ public class Book extends Medium{
 
     @Override
     public String toString() {
-        return super.toString()+author+ISBN;
+        return "Book: " +
+                getTitle() + ", " +
+                getYear() + ", " +
+                getCategory() + ", " +
+                getOrLanguage() + ", " +
+                getAuthor() + ", " +
+                getISBN();
     }
 }

@@ -25,6 +25,12 @@ public class CD extends Medium{
 
     @Override
     public String toString() {
-        return super.toString()+artist+album;
+        return "CD: " +
+                getTitle() + ", " +
+                getYear() + ", " +
+                getCategory() + ", " +
+                getOrLanguage() + ", " +
+                getArtist() + ", " +
+                getAlbum();
     }
 }

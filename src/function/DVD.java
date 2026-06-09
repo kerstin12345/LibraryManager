@@ -26,6 +26,12 @@ public class DVD extends Medium{
 
     @Override
     public String toString() {
-        return super.toString()+director+FSK;
+        return "DVD: " +
+                getTitle() + ", " +
+                getYear() + ", " +
+                getCategory() + ", " +
+                getOrLanguage() + ", " +
+                getDirector() + ", " +
+                getFSK();
     }
 }

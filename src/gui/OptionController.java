@@ -38,6 +38,8 @@ public class OptionController {
     @FXML
     private TextField extraField2;
 
+    private static final String FILE_PATH = "src/resources/media.csv";
+
     /**
      * Die gemeinsam genutzte Instanz des LibraryManagers
      * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
@@ -59,6 +61,9 @@ public class OptionController {
      * @param event Actionevent das durch das Drücken von closeButton ausgelöst wird
      */
     public void closing(ActionEvent event) {
+        if (libraryManager != null) {
+            libraryManager.writeFile(FILE_PATH);
+        }
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
@@ -70,6 +75,7 @@ public class OptionController {
      * @throws IOException wirft eine IOException bei Fehlern
      */
     public void goHome(ActionEvent event) throws IOException {
+        libraryManager.writeFile(FILE_PATH);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
         Parent root = loader.load();
 
@@ -87,9 +93,7 @@ public class OptionController {
      *
      * @param text String der ins Label geschrieben wird
      */
-//    public void setLabeltext(String text) {
-//        selectedMedium.setText(text);
-//    }
+
 
     public void setLabeltext(String text) {
         selectedMedium.setText(text);
@@ -167,42 +171,68 @@ public class OptionController {
     }
 
     public void borrowMedium(ActionEvent event) throws IOException {
-        String whichMedium = selectedMedium.getText();
-        //TODO: attribut ausgeborgt auf true setzen
-            if (libraryManager == null) {
-                System.out.println("libraryManager is null");
-                return;
-            }
-
-            String titleText = title.getText().trim();
-
-            //wenn kein text gefunden, methode beenden
-            if (titleText.isEmpty()) {
-                System.out.println("Kein Titel eingegeben.");
-                return;
-            }
-
-            for (Medium medium : libraryManager.getMedia()) {
-                if (medium.getTitle().equalsIgnoreCase(titleText)) {
-
-
-                    if (medium.isBorrowed()) {
-                        System.out.println(whichMedium+" ist bereits ausgeliehen.");
-                        return;
-                    }
-
-                    medium.setBorrowed(true);
-                    System.out.println(whichMedium+" wurde ausgeliehen.");
-                    clearFields();
-                    return;
-                }
-            }
-
-            System.out.println(whichMedium+" nicht gefunden.");
+        if (libraryManager == null) {
+            System.out.println("libraryManager is null");
+            return;
         }
 
+        String titleText = title.getText().trim();
+
+        if (titleText.isEmpty()) {
+            System.out.println("Kein Titel eingegeben.");
+            return;
+        }
+
+        for (Medium medium : libraryManager.getMedia()) {
+            if (medium.getTitle().equalsIgnoreCase(titleText)) {
+
+                if (medium.isBorrowed()) {
+                    System.out.println("Medium ist bereits ausgeliehen.");
+                    return;
+                }
+
+                medium.setBorrowed(true);
+                medium.setBorCount(medium.getBorCount() + 1);
+
+                System.out.println("Medium wurde ausgeliehen.");
+                clearFields();
+                return;
+            }
+        }
+
+        System.out.println("Medium nicht gefunden.");
+    }
+
     public void returnMedium(ActionEvent event) throws IOException {
-        //TODO: attribut ausgeborgt auf false setzen
+        if (libraryManager == null) {
+            System.out.println("libraryManager is null");
+            return;
+        }
+
+        String titleText = title.getText().trim();
+
+        if (titleText.isEmpty()) {
+            System.out.println("Kein Titel eingegeben.");
+            return;
+        }
+
+        for (Medium medium : libraryManager.getMedia()) {
+            if (medium.getTitle().equalsIgnoreCase(titleText)) {
+
+                if (!medium.isBorrowed()) {
+                    System.out.println("Medium ist nicht ausgeliehen.");
+                    return;
+                }
+
+                medium.setBorrowed(false);
+
+                System.out.println("Medium wurde zurückgegeben.");
+                clearFields();
+                return;
+            }
+        }
+
+        System.out.println("Medium nicht gefunden.");
     }
 
 }

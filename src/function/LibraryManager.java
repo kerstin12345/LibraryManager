@@ -35,9 +35,9 @@ public class LibraryManager {
     }
 
     // function.Medium in liste hinzufügen
-    public void addMedium(String line){
+    public void addMedium(String line) {
         String[] parts = line.split(";");
-        if (parts.length < 7) { //wenn was fehlt
+        if (parts.length < 10) { //wenn was fehlt
             throw new IllegalArgumentException("Ungültig: " + line);
         }
         String type = parts[0].trim();
@@ -51,19 +51,16 @@ public class LibraryManager {
         if (type.equalsIgnoreCase("book")) {//dann werden erst die unterschiedlichen behandelt
             String author = parts[8].trim();
             String isbn = parts[9].trim();
-            media.add(new Book( title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, author,isbn));
-        }
-        else if (type.equalsIgnoreCase("cd")) {
+            media.add(new Book(title, year, category, orLanguage, isBorrowed, borCount, medCount, author, isbn));
+        } else if (type.equalsIgnoreCase("cd")) {
             String artist = parts[8].trim();
             String album = parts[9].trim();
-            media.add(new CD(title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, artist, album));
-        }
-        else if (type.equalsIgnoreCase("dvd")) {
+            media.add(new CD(title, year, category, orLanguage, isBorrowed, borCount, medCount, artist, album));
+        } else if (type.equalsIgnoreCase("dvd")) {
             String director = parts[8].trim();
             int fsk = Integer.parseInt(parts[9].trim());
-            media.add(new DVD(title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, director, fsk));
-        }
-        else {
+            media.add(new DVD(title, year, category, orLanguage, isBorrowed, borCount, medCount, director, fsk));
+        } else {
             throw new IllegalArgumentException("Unbekannter Medientyp: " + type);
         }
     }
@@ -75,7 +72,7 @@ public class LibraryManager {
             int i = 0;
             while ((line = br.readLine()) != null) {
                 i++;
-                if(i > 3){ //wegen den 1sten 3 zeilen
+                if (i > 3) { //wegen den 1sten 3 zeilen
                     addMedium(line);
                 }
             }
@@ -98,9 +95,9 @@ public class LibraryManager {
         List<String> lines = new ArrayList<>();
 
         // Kopfzeilen
-        lines.add("book;title;year;category;orLanguage;author;ISBN");
-        lines.add("CD;title;year;category;orLanguage;artist;album");
-        lines.add("DVD;title;year;category;orLanguage;director;FSK");
+        lines.add("book;title;year;category;orLanguage;isBorrowed;borCount;medCount;author;ISBN");
+        lines.add("CD;title;year;category;orLanguage;isBorrowed;borCount;medCount;artist;album");
+        lines.add("DVD;title;year;category;orLanguage;isBorrowed;borCount;medCount;director;FSK");
 
         for (Medium m : media) {
 
@@ -110,6 +107,9 @@ public class LibraryManager {
                         b.getYear() + ";" +
                         b.getCategory() + ";" +
                         b.getOrLanguage() + ";" +
+                        b.isBorrowed() + ";" +
+                        b.getBorCount() + ";" +
+                        b.getMedCount() + ";" +
                         b.getAuthor() + ";" +
                         b.getISBN());
 
@@ -119,6 +119,9 @@ public class LibraryManager {
                         c.getYear() + ";" +
                         c.getCategory() + ";" +
                         c.getOrLanguage() + ";" +
+                        c.isBorrowed() + ";" +
+                        c.getBorCount() + ";" +
+                        c.getMedCount() + ";" +
                         c.getArtist() + ";" +
                         c.getAlbum());
 
@@ -128,36 +131,40 @@ public class LibraryManager {
                         d.getYear() + ";" +
                         d.getCategory() + ";" +
                         d.getOrLanguage() + ";" +
+                        d.isBorrowed() + ";" +
+                        d.getBorCount() + ";" +
+                        d.getMedCount() + ";" +
                         d.getDirector() + ";" +
                         d.getFSK());
             }
+
+            try {
+                Files.write(Paths.get(path), lines);
+            } catch (IOException e) {
+                System.out.println("Fehler beim Schreiben der Datei!");
+            }
+        }
+    }
+
+        //sortiert die liste alphabetisch
+        public void sortByTitle () {
+            Collections.sort(media, new Comparator<Medium>() {
+                @Override
+                public int compare(Medium m1, Medium m2) {
+                    return m1.getTitle().compareToIgnoreCase(m2.getTitle()); // Vergleicht zwei Titel
+                }
+            });
         }
 
-        try {
-            Files.write(Paths.get(path), lines);
-        } catch (IOException e) {
-            System.out.println("Fehler beim Schreiben der Datei!");
+        //nach dem Jahr sortieren
+        public void sortByYear () {
+            Collections.sort(media, new Comparator<Medium>() {
+                @Override
+                public int compare(Medium m1, Medium m2) {
+                    return m2.getYear() - m1.getYear(); //wenn das ergebnis negativ ist, soll m1 vor m2 stehen
+                }
+            });
         }
-    }
 
-    //sortiert die liste alphabetisch
-    public void sortByTitle() {
-        Collections.sort(media, new Comparator<Medium>() {
-            @Override
-            public int compare(Medium m1, Medium m2) {
-                return m1.getTitle().compareToIgnoreCase(m2.getTitle()); // Vergleicht zwei Titel
-            }
-        });
-    }
-
-    //nach dem Jahr sortieren
-    public void sortByYear() {
-        Collections.sort(media, new Comparator<Medium>() {
-            @Override
-            public int compare(Medium m1, Medium m2) {
-                return m2.getYear() - m1.getYear(); //wenn das ergebnis negativ ist, soll m1 vor m2 stehen
-            }
-        });
-    }
 
 }
