@@ -7,13 +7,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import function.LibraryManager;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class Main extends Application {
 
-    private LibraryManager libraryManager = new LibraryManager();
+    private static LibraryManager libraryManager = new LibraryManager();
 
 
 
     public static void main(String[] args) {
+        try {
+            libraryManager.readFile("src/resources/media.csv");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         launch(args);
     }
 
