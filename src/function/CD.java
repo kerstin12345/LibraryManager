@@ -4,8 +4,8 @@ public class CD extends Medium{
     private String artist;
     private String album;
 
-    public CD(String title, int year, String category, String orLanguage, String artist, String album) {
-        super(title, year, category, orLanguage);
+    public CD(String title, int year, String category, String orLanguage, boolean isBorrowed, int borCount, int medCount, String artist, String album) {
+        super(title, year, category, orLanguage, isBorrowed, borCount, medCount);
         this.artist = artist;
         this.album = album;
     }

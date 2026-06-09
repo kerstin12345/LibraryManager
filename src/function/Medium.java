@@ -6,24 +6,26 @@ public abstract class Medium {
     private String title;
     private int year;
     private String category;
-    private List<Integer> raiting;
     private boolean isBorrowed;
     private int borCount;
     private int medCount;
     private String orLanguage;
 
-    public Medium(String title, int year, String category, String orLanguage) {
+    public Medium(String title, int year, String category, String orLanguage,
+                  boolean isBorrowed, int borCount, int medCount) {
         this.title = title;
         this.year = year;
         this.category = category;
         this.orLanguage = orLanguage;
+        this.isBorrowed = isBorrowed;
+        this.borCount = borCount;
+        this.medCount = medCount;
     }
 
     @Override
     public String toString() {
         return title + year + category + orLanguage;
     }
-
     public String getTitle() {
         return title;
     }
@@ -41,12 +43,6 @@ public abstract class Medium {
     }
     public void setCategory(String category) {
         this.category = category;
-    }
-    public List<Integer> getRaiting() {
-        return raiting;
-    }
-    public void setRaiting(List<Integer> raiting) {
-        this.raiting = raiting;
     }
     public boolean isBorrowed() {
         return isBorrowed;

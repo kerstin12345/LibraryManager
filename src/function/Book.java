@@ -4,8 +4,10 @@ public class Book extends Medium{
     private String author;
     private String ISBN;
 
-    public Book(String title, int year, String category, String orLanguage, String author, String ISBN) {
-        super(title, year, category, orLanguage);
+    public Book(String title, int year, String category, String orLanguage,
+                boolean isBorrowed, int borCount, int medCount, String author, String ISBN) {
+        super( title,  year,  category,  orLanguage,
+         isBorrowed,  borCount,  medCount);
         this.author = author;
         this.ISBN = ISBN;
     }

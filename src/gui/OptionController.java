@@ -151,6 +151,10 @@ public class OptionController {
         attributes.add(category.getText());
         attributes.add(originalLanguage.getText());
 
+        attributes.add("false");
+        attributes.add("0");
+        attributes.add("1");
+
         attributes.add(extraField1.getText());
         attributes.add(extraField2.getText());
 

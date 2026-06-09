@@ -4,8 +4,9 @@ public class DVD extends Medium{
     private String director;
     private int FSK;
 
-    public DVD(String title, int year, String category, String orLanguage, String director, int FSK) {
-        super(title, year, category, orLanguage);
+    public DVD(String title, int year, String category, String orLanguage,
+               boolean isBorrowed, int borCount, int medCount, String director, int FSK) {
+        super(title, year, category, orLanguage, isBorrowed, borCount, medCount);
         this.director = director;
         this.FSK = FSK;
     }

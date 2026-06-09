@@ -45,20 +45,23 @@ public class LibraryManager {
         int year = Integer.parseInt(parts[2].trim());
         String category = parts[3].trim();
         String orLanguage = parts[4].trim();
+        boolean isBorrowed = Boolean.parseBoolean(parts[5].trim());
+        int borCount = Integer.parseInt(parts[6].trim());
+        int medCount = Integer.parseInt(parts[7].trim());
         if (type.equalsIgnoreCase("book")) {//dann werden erst die unterschiedlichen behandelt
-            String author = parts[5].trim();
-            String isbn = parts[6].trim();
-            media.add(new Book(title,year,category,orLanguage, author,isbn));
+            String author = parts[8].trim();
+            String isbn = parts[9].trim();
+            media.add(new Book( title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, author,isbn));
         }
         else if (type.equalsIgnoreCase("cd")) {
-            String artist = parts[5].trim();
-            String album = parts[6].trim();
-            media.add(new CD(title, year, category, orLanguage, artist, album));
+            String artist = parts[8].trim();
+            String album = parts[9].trim();
+            media.add(new CD(title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, artist, album));
         }
         else if (type.equalsIgnoreCase("dvd")) {
-            String director = parts[5].trim();
-            int fsk = Integer.parseInt(parts[6].trim());
-            media.add(new DVD(title,year, category, orLanguage, director, fsk));
+            String director = parts[8].trim();
+            int fsk = Integer.parseInt(parts[9].trim());
+            media.add(new DVD(title,  year,  category,  orLanguage, isBorrowed,  borCount,  medCount, director, fsk));
         }
         else {
             throw new IllegalArgumentException("Unbekannter Medientyp: " + type);
