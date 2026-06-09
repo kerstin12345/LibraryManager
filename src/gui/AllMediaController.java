@@ -1,5 +1,6 @@
 package gui;
 
+import function.LibraryManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,11 @@ public class AllMediaController {
     @FXML
     private TextArea mediaShowed;
 
+    private LibraryManager libraryManager;
+
+    public void setLibraryManager(LibraryManager manager) {
+        this.libraryManager = manager;
+    }
 
 
     /**
