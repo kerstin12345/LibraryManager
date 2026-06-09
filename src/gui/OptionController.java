@@ -41,6 +41,15 @@ public class OptionController {
     @FXML
     private TextField album;
 
+    @FXML
+    private Label extraLabel1;
+    @FXML
+    private Label extraLabel2;
+    @FXML
+    private TextField extraField1;
+    @FXML
+    private TextField extraField2;
+
     /**
      * Die gemeinsam genutzte Instanz des LibraryManagers
      * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
@@ -90,8 +99,37 @@ public class OptionController {
      *
      * @param text String der ins Label geschrieben wird
      */
+//    public void setLabeltext(String text) {
+//        selectedMedium.setText(text);
+//    }
+
     public void setLabeltext(String text) {
         selectedMedium.setText(text);
+
+        if (text.equalsIgnoreCase("Book")) {
+            extraLabel1.setText("Autor");
+            extraField1.setPromptText("Autor eingeben");
+
+            extraLabel2.setText("ISBN");
+            extraField2.setPromptText("ISBN eingeben");
+
+        } else if (text.equalsIgnoreCase("CD")) {
+            extraLabel1.setText("Artist");
+            extraField1.setPromptText("Artist eingeben");
+
+            extraLabel2.setText("Album");
+            extraField2.setPromptText("Album eingeben");
+
+        } else if (text.equalsIgnoreCase("DVD")) {
+            extraLabel1.setText("Director");
+            extraField1.setPromptText("Director eingeben");
+
+            extraLabel2.setText("FSK");
+            extraField2.setPromptText("FSK eingeben");
+        }
+
+        extraField1.clear();
+        extraField2.clear();
     }
 
     //Nur Titel beim Entfernen und Ausborgen und Zurückgeben
@@ -119,53 +157,72 @@ public class OptionController {
         published.clear();
         category.clear();
         originalLanguage.clear();
-        autor.clear();
-        isbn.clear();
-        director.clear();
-        fsk.clear();
-        artist.clear();
-        album.clear();
+        extraField1.clear();
+        extraField2.clear();
     }
 
+//    public void addMedium(ActionEvent event) throws IOException {
+//        if (libraryManager == null) {
+//            System.out.println("libraryManager is null");
+//            return;
+//        }
+//        //Objekt wird ertsellt und in Liste ; gertrennt line
+//        String medium = selectedMedium.getText();
+//        List<String> attributes = new ArrayList<>();
+//        attributes.add(title.getText());
+//        attributes.add(published.getText());
+//        attributes.add(category.getText());
+//        attributes.add(originalLanguage.getText());
+//
+//        if (medium.equalsIgnoreCase("DVD")) {
+//            attributes.add(director.getText());
+//            attributes.add(fsk.getText());
+//        } else if (medium.equalsIgnoreCase("CD")) {
+//            attributes.add(artist.getText());
+//            attributes.add(album.getText());
+//        } else if (medium.equalsIgnoreCase("Book")) {
+//            attributes.add(autor.getText());
+//            attributes.add(isbn.getText());
+//        } else {
+//            System.out.println("medium is not a valid medium");
+//        }
+//
+//        String line = medium + ";";
+//        while (attributes.size() > 0) {
+//            line += attributes.get(0);
+//            if (attributes.size() > 1) {
+//                line += ";";
+//            }
+//            attributes.remove(0);
+//        }
+//
+//        //Methode von LibraryManager
+//        libraryManager.addMedium(line);
+//
+//        //To do: Fehlerbehandlung
+//        clearFields();
+//        System.out.println("Medium wurde erfolgreich hinzugefügt");
+//    }
+
     public void addMedium(ActionEvent event) throws IOException {
-        if (libraryManager == null) {
-            System.out.println("libraryManager is null");
-            return;
-        }
-        //Objekt wird ertsellt und in Liste ; gertrennt line
+
         String medium = selectedMedium.getText();
+
         List<String> attributes = new ArrayList<>();
+        attributes.add(medium);
         attributes.add(title.getText());
         attributes.add(published.getText());
         attributes.add(category.getText());
         attributes.add(originalLanguage.getText());
 
-        if (medium.equalsIgnoreCase("DVD")) {
-            attributes.add(director.getText());
-            attributes.add(fsk.getText());
-        } else if (medium.equalsIgnoreCase("CD")) {
-            attributes.add(artist.getText());
-            attributes.add(album.getText());
-        } else if (medium.equalsIgnoreCase("Book")) {
-            attributes.add(autor.getText());
-            attributes.add(isbn.getText());
-        } else {
-            System.out.println("medium is not a valid medium");
-        }
+        // HIER
+        attributes.add(extraField1.getText());
+        attributes.add(extraField2.getText());
 
-        String line = medium + ";";
-        while (attributes.size() > 0) {
-            line += attributes.get(0);
-            if (attributes.size() > 1) {
-                line += ";";
-            }
-            attributes.remove(0);
-        }
+        String line = String.join(";", attributes);
 
-        //Methode von LibraryManager
         libraryManager.addMedium(line);
 
-        //To do: Fehlerbehandlung
         clearFields();
         System.out.println("Medium wurde erfolgreich hinzugefügt");
     }

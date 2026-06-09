@@ -25,8 +25,10 @@
             <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
         </HBox>
     </top>
+
     <center>
         <GridPane hgap="15" vgap="10" style="-fx-padding: 20;">
+
             <Label text="Titel:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="title" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -39,25 +41,25 @@
             <Label text="Originalsprache:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <TextField fx:id="originalLanguage" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-            <Label text="Autor:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="autor" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label fx:id="extraLabel1"
+                   text="Autor"
+                   GridPane.rowIndex="4"
+                   GridPane.columnIndex="0"/>
+            <TextField fx:id="extraField1"
+                       GridPane.rowIndex="4"
+                       GridPane.columnIndex="1"/>
 
-            <Label text="ISBN:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextField fx:id="isbn" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label fx:id="extraLabel2"
+                   text="ISBN"
+                   GridPane.rowIndex="5"
+                   GridPane.columnIndex="0"/>
+            <TextField fx:id="extraField2"
+                       GridPane.rowIndex="5"
+                       GridPane.columnIndex="1"/>
 
-            <Label text="Regisseur:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextField fx:id="director" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
-
-            <Label text="FSK:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="fsk" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-
-            <Label text="Künstler:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-            <TextField fx:id="artist" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
-
-            <Label text="Album:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-            <TextField fx:id="album" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
         </GridPane>
     </center>
+
     <left>
         <VBox spacing="10" style="-fx-padding: 10;">
             <Button fx:id="borrowMedium" text="Ausleihen" onAction="#borrowMedium"/>
