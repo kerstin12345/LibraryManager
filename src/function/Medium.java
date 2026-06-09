@@ -21,12 +21,7 @@ public abstract class Medium {
 
     @Override
     public String toString() {
-        return "Medium{" +
-                "title='" + title + '\'' +
-                ", year=" + year +
-                ", category='" + category + '\'' +
-                ", orLanguage='" + orLanguage + '\'' +
-                '}';
+        return title + year + category + orLanguage;
     }
 
     public String getTitle() {
