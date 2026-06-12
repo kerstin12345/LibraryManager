@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="gui.HomeController"
@@ -16,26 +17,52 @@
             prefHeight="540"
             prefWidth="970"
             style="
+            -fx-background-image: url('/resources/HomeBackground.jpg');
             -fx-background-size: cover;
             -fx-background-position: center;
             -fx-padding: 20;
         ">
-<!--    -fx-background-image: url("");-->
+
 
     <top>
         <HBox spacing="10">
-            <Label text="Bibliothek Manager" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+<!--            <Label text="Bibliothek Manager" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>-->
             <Region HBox.hgrow="ALWAYS"/>
             <Button fx:id="closeButton" text="Beenden" onAction="#closing"/>
         </HBox>
     </top>
     <center>
-        <HBox>
-            <Button text="CD" onAction="#mediumPressed"/>
-            <Button text="DVD" onAction="#mediumPressed"/>
-            <Button text="Book" onAction="#mediumPressed"/>
-            <Button text="Alle Medien" onAction="#showAllMedia"/>
-        </HBox>
+        <GridPane alignment="CENTER"
+                  hgap="25"
+                  vgap="25"
+                  style="
+                     -fx-padding: 25;
+                     -fx-background-radius: 20;">
+
+            <Button text="CD"
+                    onAction="#mediumPressed"
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="0"
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+
+            <Button text="DVD"
+                    onAction="#mediumPressed"
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="1"
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+
+            <Button text="Book"
+                    onAction="#mediumPressed"
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="0"
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+
+            <Button text="Alle Medien"
+                    onAction="#showAllMedia"
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="1"
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+        </GridPane>
     </center>
 
     <left>
