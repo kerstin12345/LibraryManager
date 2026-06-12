@@ -14,7 +14,13 @@
             minWidth="970"
             prefHeight="540"
             prefWidth="970"
-            style="-fx-padding: 20;">
+            style="
+            -fx-background-size: cover;
+            -fx-background-position: center;
+            -fx-padding: 20;
+        ">
+<!--    -fx-background-image: url("");-->
+
     <top>
         <HBox spacing="10">
             <Label text="Bibliothek Manager" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>

@@ -1,19 +1,19 @@
 book;title;year;category;orLanguage;isBorrowed;borCount;medCount;author;ISBN
 CD;title;year;category;orLanguage;isBorrowed;borCount;medCount;artist;album
 DVD;title;year;category;orLanguage;isBorrowed;borCount;medCount;director;FSK
-Book;Der Herr der Ringe;1954;Fantasy;Deutsch;true;1;1;J.R.R. Tolkien;9783608939846
-CD;Back in Black;1980;Rock;Englisch;false;0;1;AC/DC;Back in Black
-DVD;The Dark Knight;2008;Action;Englisch;false;0;1;Christopher Nolan;16
-Book;Harry Potter und der Stein der Weisen;1997;Fantasy;Deutsch;false;0;1;J.K. Rowling;9783551551672
-Book;Faust;1808;Drama;Deutsch;false;0;1;Johann Wolfgang von Goethe;9783150000012
-CD;The Eminem Show;2002;Hip-Hop;Englisch;false;0;1;Eminem;The Eminem Show
-CD;21;2011;Pop;Englisch;false;0;1;Adele;21
-CD;Mutter;2001;Metal;Deutsch;false;0;1;Rammstein;Mutter
-CD;Thriller;1982;Pop;Englisch;false;0;1;Michael Jackson;Thriller
-DVD;Inception;2010;Science Fiction;Englisch;false;0;1;Christopher Nolan;12
-DVD;Der Herr der Ringe: Die Gefährten;2001;Fantasy;Deutsch;false;0;1;Peter Jackson;12
-DVD;Titanic;1997;Drama;Englisch;false;0;1;James Cameron;12
-DVD;Findet Nemo;2003;Animation;Deutsch;true;1;1;Andrew Stanton;0
 CD;1;1;1;1;true;1;1;1;1
 DVD;2;2;2;2;false;0;1;2;2
+CD;21;2011;Pop;Englisch;false;0;1;Adele;21
 Book;3;3;3;3;true;1;1;3;3
+CD;Back in Black;1980;Rock;Englisch;false;0;1;AC/DC;Back in Black
+Book;Der Herr der Ringe;1954;Fantasy;Deutsch;true;1;1;J.R.R. Tolkien;9783608939846
+DVD;Der Herr der Ringe: Die Gefährten;2001;Fantasy;Deutsch;false;0;1;Peter Jackson;12
+Book;Faust;1808;Drama;Deutsch;false;0;1;Johann Wolfgang von Goethe;9783150000012
+DVD;Findet Nemo;2003;Animation;Deutsch;true;1;1;Andrew Stanton;0
+Book;Harry Potter und der Stein der Weisen;1997;Fantasy;Deutsch;false;0;1;J.K. Rowling;9783551551672
+DVD;Inception;2010;Science Fiction;Englisch;false;0;1;Christopher Nolan;12
+CD;Mutter;2001;Metal;Deutsch;false;0;1;Rammstein;Mutter
+DVD;The Dark Knight;2008;Action;Englisch;false;0;1;Christopher Nolan;16
+CD;The Eminem Show;2002;Hip-Hop;Englisch;false;0;1;Eminem;The Eminem Show
+CD;Thriller;1982;Pop;Englisch;false;0;1;Michael Jackson;Thriller
+DVD;Titanic;1997;Drama;Englisch;false;0;1;James Cameron;12
