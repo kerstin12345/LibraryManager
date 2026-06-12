@@ -14,7 +14,11 @@
             minHeight="540"
             minWidth="970"
             prefHeight="540"
-            prefWidth="970">
+            prefWidth="970"
+
+            style="
+            -fx-background-image: url('/resources/purple.jpg');">
+
 
     <top>
         <HBox spacing="10" alignment="CENTER_LEFT">

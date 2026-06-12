@@ -43,25 +43,25 @@
                     onAction="#mediumPressed"
                     GridPane.rowIndex="0"
                     GridPane.columnIndex="0"
-                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120; -fx-background-radius: 10"/>
 
             <Button text="DVD"
                     onAction="#mediumPressed"
                     GridPane.rowIndex="0"
                     GridPane.columnIndex="1"
-                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120; -fx-background-radius: 10"/>
 
             <Button text="Book"
                     onAction="#mediumPressed"
                     GridPane.rowIndex="1"
                     GridPane.columnIndex="0"
-                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120; -fx-background-radius: 10"/>
 
             <Button text="Alle Medien"
                     onAction="#showAllMedia"
                     GridPane.rowIndex="1"
                     GridPane.columnIndex="1"
-                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120;"/>
+                    style="-fx-font-size: 24px; -fx-pref-width: 180; -fx-pref-height: 120; -fx-background-radius: 10"/>
         </GridPane>
     </center>
 
