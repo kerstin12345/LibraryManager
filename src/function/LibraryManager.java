@@ -18,23 +18,40 @@ public class LibraryManager {
 //        System.out.println("VORHER: "+libraryManager.media);
 //        libraryManager.sortByTitle();
 //        System.out.println("NACHHER, Alphabetisch: "+libraryManager.media);
-
-
     }
 
     public List<Medium> media = new ArrayList<>();
 
+    /**
+     * Gibt die Liste aller gespeicherten Medien zurück
+     *
+     * @return Liste aller Medien
+     */
     public List<Medium> getMedia() {
         return media;
     }
 
+    /**
+     * Liefert den String des LibraryManagers
+     *
+     * @return String der Medienliste
+     */
     @Override
     public String toString() {
         return "{" + media +
                 "}";
     }
 
-    // function.Medium in liste hinzufügen
+    /**
+     * Fügt anhand einer CSV-Zeile(String) ein neues Medium zur Liste hinzu.
+     * Je nach Typ wird ein Book-, CD- oder DVD-Objekt erstellt.
+     *
+     * Erwartetes Format:
+     * Typ;Titel;Jahr;Kategorie;Sprache;Ausgeliehen;Ausleihanzahl;Bestand;Extra1;Extra2
+     *
+     * @param line CSV-Zeile mit den Attributen des Mediums
+     * @throws IllegalArgumentException falls die Zeile ungültig ist
+     */
     public void addMedium(String line) {
         String[] parts = line.split(";");
         if (parts.length < 10) { //wenn was fehlt
@@ -65,7 +82,14 @@ public class LibraryManager {
         }
     }
 
-    //Datei einlesen und Medien hinzufuegen
+    /**
+     * Liest alle Medien aus einer CSV-Datei ein
+     * fügt sie der Medienliste hinzu.
+     *
+     * Die ersten drei Zeilen werden als Kopfzeilen übersprungen
+     *
+     * @param path Pfad(String) zur CSV-Datei
+     */
     public void readFile(String path) {
         try (BufferedReader br = Files.newBufferedReader(Path.of(path))) {
             String line;
@@ -81,7 +105,14 @@ public class LibraryManager {
         }
     }
 
-    // function.Medium aus liste entfernen, nach Titel
+    /**
+     * Entfernt ein Medium anhand von Titel und Typ
+     *
+     *@param title Titel des Mediums
+     * @param type Medientyp (Book, CD oder DVD)
+     * @return true falls ein Medium entfernt wurde,
+     *sonst false
+     */
     public boolean removeMedium(String title, String type) {
         for (int i = 0; i < media.size(); i++) {
             Medium m = media.get(i);
@@ -99,6 +130,13 @@ public class LibraryManager {
         return false;
     }
 
+    /**
+     * Speichert alle Medien in einer CSV-Datei.
+     *
+     * Bestehende Inhalte werden überschrieben.
+     *
+     * @param path Pfad zur Ausgabedatei
+     */
     public void writeFile(String path) {
         List<String> lines = new ArrayList<>();
 
@@ -145,17 +183,16 @@ public class LibraryManager {
                         d.getDirector() + ";" +
                         d.getFSK());
             }
-
-            try {
-                Files.write(Paths.get(path), lines);
-            } catch (IOException e) {
-                System.out.println("Fehler beim Schreiben der Datei!");
-            }
+        }
+        try {
+            Files.write(Paths.get(path), lines);
+        } catch (IOException e) {
+            System.out.println("Fehler beim Schreiben der Datei!");
         }
     }
 
-        //sortiert die liste alphabetisch
-        public void sortByTitle () {
+    //sortiert die liste alphabetisch
+    public void sortByTitle () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
                 public int compare(Medium m1, Medium m2) {
@@ -164,8 +201,8 @@ public class LibraryManager {
             });
         }
 
-        //nach dem Jahr sortieren
-        public void sortByYear () {
+    //nach dem Jahr sortieren
+    public void sortByYear () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
                 public int compare(Medium m1, Medium m2) {
@@ -173,6 +210,4 @@ public class LibraryManager {
                 }
             });
         }
-
-
 }
