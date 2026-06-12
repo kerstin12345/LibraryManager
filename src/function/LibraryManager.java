@@ -18,8 +18,6 @@ public class LibraryManager {
 //        System.out.println("VORHER: "+libraryManager.media);
 //        libraryManager.sortByTitle();
 //        System.out.println("NACHHER, Alphabetisch: "+libraryManager.media);
-
-
     }
 
     public List<Medium> media = new ArrayList<>();
@@ -145,17 +143,16 @@ public class LibraryManager {
                         d.getDirector() + ";" +
                         d.getFSK());
             }
-
-            try {
-                Files.write(Paths.get(path), lines);
-            } catch (IOException e) {
-                System.out.println("Fehler beim Schreiben der Datei!");
-            }
+        }
+        try {
+            Files.write(Paths.get(path), lines);
+        } catch (IOException e) {
+            System.out.println("Fehler beim Schreiben der Datei!");
         }
     }
 
-        //sortiert die liste alphabetisch
-        public void sortByTitle () {
+    //sortiert die liste alphabetisch
+    public void sortByTitle () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
                 public int compare(Medium m1, Medium m2) {
@@ -164,8 +161,8 @@ public class LibraryManager {
             });
         }
 
-        //nach dem Jahr sortieren
-        public void sortByYear () {
+    //nach dem Jahr sortieren
+    public void sortByYear () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
                 public int compare(Medium m1, Medium m2) {
@@ -173,6 +170,4 @@ public class LibraryManager {
                 }
             });
         }
-
-
 }
