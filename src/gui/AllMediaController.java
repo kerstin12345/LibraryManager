@@ -90,6 +90,11 @@ public class AllMediaController {
         }
     }
 
+    /**
+     * Zeigt nur aktuell ausgeliehene Medien an.
+     *
+     * @param event ausgelöst durch einen Button
+     */
     public void showBorrowedMedia(ActionEvent event) {
         mediaShowed.clear();
 
@@ -100,6 +105,11 @@ public class AllMediaController {
         }
     }
 
+    /**
+     * Blendet die Sortier- und Filteroptionen ein oder aus.
+     *
+     * @param event ausgelöst durch einen Button
+     */
     public void showSortOptions(ActionEvent event) {
         boolean sichtbar = borrowedMediaButton.isVisible();
 
@@ -110,6 +120,12 @@ public class AllMediaController {
         sortTitleButton.setManaged(!sichtbar);
     }
 
+    /**
+     * Sortiert die Medienliste alphabetisch nach Titel
+     * und aktualisiert die Anzeige.
+     *
+     * @param event ausgelöst durch einen Button
+     */
     public void sortByTitle(ActionEvent event) {
 
         libraryManager.sortByTitle();

@@ -65,6 +65,12 @@ public class HomeController {
 
     }
 
+    /**
+     * Öffnet die Ansicht zur Anzeige aller Medien.
+     *
+     * @param event ausgelöst durch den Button
+     * @throws IOException bei Fehlern beim Laden der Oberfläche
+     */
     public void showAllMedia(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("allMedia.fxml"));
         Parent root = loader.load();

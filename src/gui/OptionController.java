@@ -117,7 +117,13 @@ public class OptionController {
         extraField2.clear();
     }
 
-    //Nur Titel beim Entfernen und Ausborgen und Zurückgeben
+    /**
+     * Entfernt ein Medium anhand seines Titels
+     * und des aktuell ausgewählten Medientyps.
+     *
+     * @param event ausgelöst durch den Remove-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
     public void removeMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
@@ -154,6 +160,13 @@ public class OptionController {
 
     }
 
+    /**
+     * Erstellt ein neues Medium aus den Eingabefeldern
+     * und fügt es der Medienliste hinzu.
+     *
+     * @param event ausgelöst durch den Add-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
     public void addMedium(ActionEvent event) throws IOException {
 
         String titleText = title.getText().trim();
@@ -188,6 +201,14 @@ public class OptionController {
         setAktionErfolgreich(medium+" wurde erfolgreich hinzugefügt.");
     }
 
+    /**
+     * Leiht ein Medium aus.
+     * Der Ausleihstatus wird auf true gesetzt
+     * und der Ausleihzähler erhöht.
+     *
+     * @param event ausgelöst durch den Borrow-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
     public void borrowMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
@@ -225,6 +246,13 @@ public class OptionController {
         setAktionErfolgreich(selectedMedium+" nicht gefunden.");
     }
 
+    /**
+     * Gibt ein ausgeliehenes Medium zurück.
+     * Der Ausleihstatus wird auf false gesetzt.
+     *
+     * @param event ausgelöst durch den Return-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
     public void returnMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
