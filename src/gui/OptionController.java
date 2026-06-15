@@ -37,6 +37,8 @@ public class OptionController {
     private TextField extraField1;
     @FXML
     private TextField extraField2;
+    @FXML
+    private Label aktionErfolgreich;
 
     private static final String FILE_PATH = "src/resources/media.csv";
 
@@ -119,20 +121,23 @@ public class OptionController {
     public void removeMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
-            return;
+            throw new IllegalArgumentException("libraryManager is null");
         }
         String titleText = title.getText().trim();
         String type = selectedMedium.getText();
         if (titleText.isEmpty()) {
             System.out.println("Kein Titel eingegeben.");
-            return;
+            setAktionErfolgreich("Kein Titel eingegeben.");
+            throw new IllegalArgumentException("Text is empty");
         }
         boolean removed = libraryManager.removeMedium(titleText, type);
         if (removed) {
             clearFields();
             System.out.println(type + " wurde erfolgreich entfernt.");
+            setAktionErfolgreich(type+" wurde erfolgreich entfernt.");
         } else {
             System.out.println(type + " mit diesem Titel wurde nicht gefunden.");
+            setAktionErfolgreich(type+" mit diesem Titel wurde nicht gefunden.");
         }
     }
 
@@ -146,6 +151,7 @@ public class OptionController {
         originalLanguage.clear();
         extraField1.clear();
         extraField2.clear();
+
     }
 
     public void addMedium(ActionEvent event) throws IOException {
@@ -154,7 +160,8 @@ public class OptionController {
 
         if (titleText.isEmpty()) {
             System.out.println("Kein Titel eingegeben.");
-            return;
+            setAktionErfolgreich("Kein Titel eingegeben.");
+            throw new IllegalArgumentException("libraryManager is null");
         }
         String medium = selectedMedium.getText();
 
@@ -178,19 +185,21 @@ public class OptionController {
 
         clearFields();
         System.out.println("Medium wurde erfolgreich hinzugefügt");
+        setAktionErfolgreich(medium+" wurde erfolgreich hinzugefügt.");
     }
 
     public void borrowMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
-            return;
+            throw new IllegalArgumentException("libraryManager is null");
         }
 
         String titleText = title.getText().trim();
 
         if (titleText.isEmpty()) {
             System.out.println("Kein Titel eingegeben.");
-            return;
+            setAktionErfolgreich("Kein Titel eingegeben.");
+            throw new IllegalArgumentException("Text is empty");
         }
 
         for (Medium medium : libraryManager.getMedia()) {
@@ -198,6 +207,7 @@ public class OptionController {
 
                 if (medium.isBorrowed()) {
                     System.out.println("Medium ist bereits ausgeliehen.");
+                    setAktionErfolgreich("Medium ist bereits ausgeliehen.");
                     return;
                 }
 
@@ -205,25 +215,28 @@ public class OptionController {
                 medium.setBorCount(medium.getBorCount() + 1);
 
                 System.out.println("Medium wurde ausgeliehen.");
+                setAktionErfolgreich("Medium wurde erfolgreich ausgeliehen.");
                 clearFields();
                 return;
             }
         }
 
         System.out.println("Medium nicht gefunden.");
+        setAktionErfolgreich(selectedMedium+" nicht gefunden.");
     }
 
     public void returnMedium(ActionEvent event) throws IOException {
         if (libraryManager == null) {
             System.out.println("libraryManager is null");
-            return;
+            throw new IllegalArgumentException("libraryManager is null");
         }
 
         String titleText = title.getText().trim();
 
         if (titleText.isEmpty()) {
             System.out.println("Kein Titel eingegeben.");
-            return;
+            setAktionErfolgreich("Kein Titel eingegeben.");
+            throw new IllegalArgumentException("Text is empty");
         }
 
         for (Medium medium : libraryManager.getMedia()) {
@@ -231,18 +244,26 @@ public class OptionController {
 
                 if (!medium.isBorrowed()) {
                     System.out.println("Medium ist nicht ausgeliehen.");
+                    setAktionErfolgreich("Medium ist nicht ausgeliehen.");
                     return;
                 }
 
                 medium.setBorrowed(false);
 
                 System.out.println("Medium wurde zurückgegeben.");
+                setAktionErfolgreich("Medium wurde erfolgreich zurückgegeben!");
                 clearFields();
                 return;
             }
         }
 
         System.out.println("Medium nicht gefunden.");
+        setAktionErfolgreich(selectedMedium+" nicht gefunden.");
     }
+
+    public void setAktionErfolgreich(String text){
+        aktionErfolgreich.setText(text);
+    }
+
 
 }
