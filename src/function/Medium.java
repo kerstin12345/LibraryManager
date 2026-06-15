@@ -11,6 +11,17 @@ public abstract class Medium {
     private int medCount;
     private String orLanguage;
 
+    /**
+     * Erstellt ein neues Medium mit den gemeinsamen Attributen.
+     *
+     * @param title Titel des Mediums
+     * @param year Erscheinungsjahr
+     * @param category Kategorie/Genre des Mediums
+     * @param orLanguage Originalsprache
+     * @param isBorrowed Ausleihstatus
+     * @param borCount Anzahl der Ausleihen
+     * @param medCount Anzahl vorhandener Exemplare
+     */
     public Medium(String title, int year, String category, String orLanguage,
                   boolean isBorrowed, int borCount, int medCount) {
         this.title = title;
@@ -22,10 +33,15 @@ public abstract class Medium {
         this.medCount = medCount;
     }
 
+    /**
+     * Liefert eine Stringdarstellung des Mediums.
+     * @return Stringdarstellung des Mediums
+     */
     @Override
     public String toString() {
         return title + year + category + orLanguage;
     }
+
     public String getTitle() {
         return title;
     }

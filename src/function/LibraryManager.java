@@ -191,7 +191,9 @@ public class LibraryManager {
         }
     }
 
-    //sortiert die liste alphabetisch
+    /**
+     * Sortiert alle Medien alphabetisch nach ihrem Titel.
+     */
     public void sortByTitle () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
@@ -201,7 +203,10 @@ public class LibraryManager {
             });
         }
 
-    //nach dem Jahr sortieren
+    /**
+     * Sortiert alle Medien absteigend nach Erscheinungsjahr.
+     * Neuere Medien werden zuerst angezeigt.
+     */
     public void sortByYear () {
             Collections.sort(media, new Comparator<Medium>() {
                 @Override
