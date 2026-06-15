@@ -150,6 +150,12 @@ public class OptionController {
 
     public void addMedium(ActionEvent event) throws IOException {
 
+        String titleText = title.getText().trim();
+
+        if (titleText.isEmpty()) {
+            System.out.println("Kein Titel eingegeben.");
+            return;
+        }
         String medium = selectedMedium.getText();
 
         List<String> attributes = new ArrayList<>();
