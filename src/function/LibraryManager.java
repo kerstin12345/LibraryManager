@@ -83,6 +83,41 @@ public class LibraryManager {
     }
 
     /**
+     * Erstellt aus einzelnen Eingaben ein Medium und fügt es hinzu. Die Controller müssen dadurch keine CSV-Zeile mehr zusammenbauen.
+     *
+     * @param type
+     * @param title
+     * @param year
+     * @param category
+     * @param orLanguage
+     * @param extra1
+     * @param extra2
+     * @return Statusmeldung für die Oberfläche
+     */
+    public String addMedium(String type, String title, String year, String category,
+                            String orLanguage, String extra1, String extra2) {
+        if (title == null || title.trim().isEmpty()) {
+            return "Kein Titel eingegeben.";
+        }
+
+        String line = String.join(";",
+                type,
+                title.trim(),
+                year.trim(),
+                category.trim(),
+                orLanguage.trim(),
+                "false",
+                "0",
+                "1",
+                extra1.trim(),
+                extra2.trim()
+        );
+
+        addMedium(line);
+        return type + " wurde erfolgreich hinzugefügt.";
+    }
+
+    /**
      * Liest alle Medien aus einer CSV-Datei ein
      * fügt sie der Medienliste hinzu.
      *
@@ -128,6 +163,77 @@ public class LibraryManager {
             }
         }
         return false;
+    }
+
+
+    /**
+     * Entfernt ein Medium
+     * @param title
+     * @param type
+     * @return Statusmeldung
+     */
+    public String removeMediumWithMessage(String title, String type) {
+        if (title == null || title.trim().isEmpty()) {
+            return "Kein Titel eingegeben.";
+        }
+
+        boolean removed = removeMedium(title.trim(), type);
+        if (removed) {
+            return type + " wurde erfolgreich entfernt.";
+        }
+        return type + " mit diesem Titel wurde nicht gefunden.";
+    }
+
+
+    /**
+     * Leiht ein Medium aus.
+     *
+     * @param title
+     * @param type
+     * @return Statusmeldung für die Oberfläche
+     */
+    public String borrowMedium(String title, String type) {
+        if (title == null || title.trim().isEmpty()) {
+            return "Kein Titel eingegeben.";
+        }
+
+        Medium medium = findMedium(title.trim(), type);
+        if (medium == null) {
+            return type + " nicht gefunden.";
+        }
+
+        if (medium.isBorrowed()) {
+            return "Medium ist bereits ausgeliehen.";
+        }
+
+        medium.setBorrowed(true);
+        medium.setBorCount(medium.getBorCount() + 1);
+        return "Medium wurde erfolgreich ausgeliehen.";
+    }
+
+    /**
+     * Gibt ein ausgeliehenes Medium zurück.
+     *
+     * @param title
+     * @param type
+     * @return Statusmeldung für die Oberfläche
+     */
+    public String returnMedium(String title, String type) {
+        if (title == null || title.trim().isEmpty()) {
+            return "Kein Titel eingegeben.";
+        }
+
+        Medium medium = findMedium(title.trim(), type);
+        if (medium == null) {
+            return type + " nicht gefunden.";
+        }
+
+        if (!medium.isBorrowed()) {
+            return "Medium ist nicht ausgeliehen.";
+        }
+
+        medium.setBorrowed(false);
+        return "Medium wurde erfolgreich zurückgegeben!";
     }
 
     /**
@@ -215,4 +321,74 @@ public class LibraryManager {
                 }
             });
         }
+
+    /**
+     * Gibt alle Medien als Text zurück.
+      * @return Text der Medien
+     */
+    public String getAllMediaAsText() {
+        return mediaListToText(media);
+    }
+
+    /**
+     * Gibt alle ausgeliehenen Medien als Text zurück.
+     * @return
+     */
+    public String getBorrowedMediaAsText() {
+        List<Medium> borrowedMedia = new ArrayList<>();
+        for (Medium medium : media) {
+            if (medium.isBorrowed()) {
+                borrowedMedia.add(medium);
+            }
+        }
+        return mediaListToText(borrowedMedia);
+    }
+
+    /**
+     * Sortiert nach Titel
+     * @return sortierte Liste
+     */
+    public String sortByTitleAndGetText() {
+        sortByTitle();
+        return getAllMediaAsText();
+    }
+    public String[] getExtraLabels(String type) {
+        if (type.equalsIgnoreCase("Book")) {
+            return new String[]{"Autor", "ISBN"};
+        } else if (type.equalsIgnoreCase("CD")) {
+            return new String[]{"Artist", "Album"};
+        } else if (type.equalsIgnoreCase("DVD")) {
+            return new String[]{"Director", "FSK"};
+        }
+        return new String[]{"Extra 1", "Extra 2"};
+    }
+
+    private Medium findMedium(String title, String type) {
+        for (Medium medium : media) {
+            if (isSameTitleAndType(medium, title, type)) {
+                return medium;
+            }
+        }
+        return null;
+    }
+
+    private boolean isSameTitleAndType(Medium medium, String title, String type) {
+        boolean sameTitle = medium.getTitle().equalsIgnoreCase(title);
+        boolean sameType =
+                (type.equalsIgnoreCase("Book") && medium instanceof Book) ||
+                        (type.equalsIgnoreCase("CD") && medium instanceof CD) ||
+                        (type.equalsIgnoreCase("DVD") && medium instanceof DVD);
+
+        return sameTitle && sameType;
+    }
+
+    private String mediaListToText(List<Medium> mediaList) {
+        StringBuilder text = new StringBuilder();
+        for (Medium medium : mediaList) {
+            text.append(medium.toString()).append("\n");
+        }
+        return text.toString();
+    }
+
 }
+
