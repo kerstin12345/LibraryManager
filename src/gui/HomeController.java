@@ -56,8 +56,8 @@ public class HomeController {
 
         //Text des Labels wird zum gedrückten function.Medium geändert
         OptionController controller = loader.getController();
-        controller.setLabeltext(buttonText);
         controller.setLibraryManager(libraryManager);
+        controller.setLabeltext(buttonText);
 
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(new Scene(root));

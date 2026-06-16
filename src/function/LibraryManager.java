@@ -23,15 +23,6 @@ public class LibraryManager {
     public List<Medium> media = new ArrayList<>();
 
     /**
-     * Gibt die Liste aller gespeicherten Medien zurück
-     *
-     * @return Liste aller Medien
-     */
-    public List<Medium> getMedia() {
-        return media;
-    }
-
-    /**
      * Liefert den String des LibraryManagers
      *
      * @return String der Medienliste
@@ -83,7 +74,7 @@ public class LibraryManager {
     }
 
     /**
-     * Erstellt aus einzelnen Eingaben ein Medium und fügt es hinzu. Die Controller müssen dadurch keine CSV-Zeile mehr zusammenbauen.
+     * Erstellt aus einzelnen Eingaben ein Medium und fügt es hinzu.
      *
      * @param type
      * @param title
@@ -100,18 +91,9 @@ public class LibraryManager {
             return "Kein Titel eingegeben.";
         }
 
-        String line = String.join(";",
-                type,
-                title.trim(),
-                year.trim(),
-                category.trim(),
-                orLanguage.trim(),
-                "false",
-                "0",
-                "1",
-                extra1.trim(),
-                extra2.trim()
-        );
+        String line = type + ";" + title.trim() + ";" +
+        year.trim() + ";" + category.trim() + ";" + orLanguage.trim() + ";" +
+        "false" + ";" + "0" + ";" + "1" + ";" + extra1.trim() + ";" + extra2.trim();
 
         addMedium(line);
         return type + " wurde erfolgreich hinzugefügt.";
@@ -121,7 +103,7 @@ public class LibraryManager {
      * Liest alle Medien aus einer CSV-Datei ein
      * fügt sie der Medienliste hinzu.
      *
-     * Die ersten drei Zeilen werden als Kopfzeilen übersprungen
+     * Die ersten drei Zeilen werden übersprungen
      *
      * @param path Pfad(String) zur CSV-Datei
      */
@@ -238,9 +220,7 @@ public class LibraryManager {
 
     /**
      * Speichert alle Medien in einer CSV-Datei.
-     *
      * Bestehende Inhalte werden überschrieben.
-     *
      * @param path Pfad zur Ausgabedatei
      */
     public void writeFile(String path) {
@@ -254,7 +234,6 @@ public class LibraryManager {
         for (Medium m : media) {
 
             if (m instanceof Book b) {
-
                 lines.add("Book;" + b.getTitle() + ";" +
                         b.getYear() + ";" +
                         b.getCategory() + ";" +
@@ -352,6 +331,14 @@ public class LibraryManager {
         sortByTitle();
         return getAllMediaAsText();
     }
+
+    /**
+     * Liefert die Bezeichnungen der beiden zusätzlichen Eingabefelder
+     * abhängig vom gewählten Medientyp.
+     *
+     * @param type Medientyp (Book, CD oder DVD)
+     * @return Array mit den Bezeichnungen der Zusatzfelder
+     */
     public String[] getExtraLabels(String type) {
         if (type.equalsIgnoreCase("Book")) {
             return new String[]{"Autor", "ISBN"};
@@ -363,6 +350,13 @@ public class LibraryManager {
         return new String[]{"Extra 1", "Extra 2"};
     }
 
+    /**
+     * Sucht ein Medium anhand von Titel und Typ.
+     *
+     * @param title Titel des gesuchten Mediums
+     * @param type Medientyp des gesuchten Mediums
+     * @return das gefundene Medium oder null, falls kein passendes Medium existiert
+     */
     private Medium findMedium(String title, String type) {
         for (Medium medium : media) {
             if (isSameTitleAndType(medium, title, type)) {
@@ -372,6 +366,14 @@ public class LibraryManager {
         return null;
     }
 
+    /**
+     * Prüft, ob ein Medium den angegebenen Titel und Typ besitzt.
+     *
+     * @param medium zu prüfendes Medium
+     * @param title gesuchter Titel
+     * @param type gesuchter Medientyp
+     * @return true, wenn Titel und Typ übereinstimmen, sonst false
+     */
     private boolean isSameTitleAndType(Medium medium, String title, String type) {
         boolean sameTitle = medium.getTitle().equalsIgnoreCase(title);
         boolean sameType =
@@ -382,6 +384,13 @@ public class LibraryManager {
         return sameTitle && sameType;
     }
 
+    /**
+     * Wandelt eine Liste von Medien in einen formatierten Text um.
+     * Jedes Medium wird in einer neuen Zeile dargestellt.
+     *
+     * @param mediaList Liste der Medien
+     * @return Stringdarstellung der gesamten Medienliste
+     */
     private String mediaListToText(List<Medium> mediaList) {
         StringBuilder text = new StringBuilder();
         for (Medium medium : mediaList) {

@@ -1,7 +1,6 @@
 package gui;
 
 import function.LibraryManager;
-import function.Medium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class AllMediaController {
     @FXML
@@ -31,26 +25,19 @@ public class AllMediaController {
     @FXML
     private Button sortTitleButton;
 
-    /**
-     * Die gemeinsam genutzte Instanz des LibraryManagers
-     * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
-     */
     private LibraryManager libraryManager;
 
     /**
-     * Setzt libraryManager für den aktuellen Controller
-     *
-     * @param libraryManager gemeinsam genutze Instanz -> darf nicht 0 sein
+     * Setzt die gemeinsam genutzte Instanz des LibraryManagers.
+     * @param libraryManager Instanz des LibraryManagers
      */
     public void setLibraryManager(LibraryManager libraryManager) {
         this.libraryManager = libraryManager;
     }
 
-
     /**
      * Schließt das aktuelle Fenster
-     *
-     * @param event Actionevent das durch closeButton ausgelöst wurde
+     * @param event ActionEvent, ausgelöst durch den Close-Button
      */
     public void closing(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -58,16 +45,15 @@ public class AllMediaController {
     }
 
     /**
-     * Ändert das fxml File auf home.fxml
-     *
-     * @param event Actionevent das durch einen Button ausgelöst wird
-     * @throws IOException wirft eine IOException bei Fehlern
+     * Wechselt zurück zur Startansicht (home.fxml).
+     * Die aktuelle LibraryManager-Instanz wird an den HomeController übergeben.
+     * @param event ActionEvent, ausgelöst durch einen Button
+     * @throws IOException falls das Laden der FXML-Datei fehlschlägt
      */
     public void goHome(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
         Parent root = loader.load();
 
-        // LibraryManager an HomeController übergeben
         HomeController controller = loader.getController();
         controller.setLibraryManager(libraryManager);
 
@@ -77,38 +63,27 @@ public class AllMediaController {
     }
 
     /**
-     * Zeigt alle Medien der Liste<function.Medium> im Textfield listedMediunms an
+     * Zeigt alle gespeicherten Medien im TextArea-Feld an.
      *
-     * @param event Actionevent das durch einen Button ausgelöst wurde
-     * @throws IOException
+     * @param event ActionEvent, ausgelöst durch einen Button
+     * @throws IOException kann bei Oberflächenoperationen auftreten
      */
     public void showAllMedia(ActionEvent event) throws IOException {
-        //TODO: schöne Ausgabe pro Attribut
-        mediaShowed.clear(); //damit es leer ist
-        for (Medium medium : this.libraryManager.media) {
-            mediaShowed.appendText(medium.toString() + "\n");
-        }
+        mediaShowed.setText(libraryManager.getAllMediaAsText());
     }
 
     /**
-     * Zeigt nur aktuell ausgeliehene Medien an.
-     *
-     * @param event ausgelöst durch einen Button
+     * Zeigt nur die aktuell ausgeliehenen Medien im TextArea-Feld an.
+     * @param event ActionEvent, ausgelöst durch einen Button
      */
     public void showBorrowedMedia(ActionEvent event) {
-        mediaShowed.clear();
-
-        for (Medium medium : libraryManager.getMedia()) {
-            if (medium.isBorrowed()) {
-                mediaShowed.appendText(medium.toString() + "\n");
-            }
-        }
+        mediaShowed.setText(libraryManager.getBorrowedMediaAsText());
     }
 
     /**
      * Blendet die Sortier- und Filteroptionen ein oder aus.
-     *
-     * @param event ausgelöst durch einen Button
+     * Die Sichtbarkeit der Buttons wird dabei umgeschaltet.
+     * @param event ActionEvent, ausgelöst durch den Sortier-Button
      */
     public void showSortOptions(ActionEvent event) {
         boolean sichtbar = borrowedMediaButton.isVisible();
@@ -121,19 +96,11 @@ public class AllMediaController {
     }
 
     /**
-     * Sortiert die Medienliste alphabetisch nach Titel
-     * und aktualisiert die Anzeige.
-     *
-     * @param event ausgelöst durch einen Button
+     * Sortiert alle Medien alphabetisch nach ihrem Titel
+     * und aktualisiert anschließend die Anzeige.
+     * @param event ActionEvent, ausgelöst durch einen Button
      */
     public void sortByTitle(ActionEvent event) {
-
-        libraryManager.sortByTitle();
-
-        mediaShowed.clear();
-
-        for (Medium medium : libraryManager.getMedia()) {
-            mediaShowed.appendText(medium.toString() + "\n");
-        }
+        mediaShowed.setText(libraryManager.sortByTitleAndGetText());
     }
 }

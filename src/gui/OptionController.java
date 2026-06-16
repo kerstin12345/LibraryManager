@@ -1,6 +1,6 @@
 package gui;
 
-import function.Medium;
+import function.LibraryManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OptionController {
     @FXML
@@ -42,25 +39,19 @@ public class OptionController {
 
     private static final String FILE_PATH = "src/resources/media.csv";
 
-    /**
-     * Die gemeinsam genutzte Instanz des LibraryManagers
-     * Wird nicht hier erzeugt, sondern von außen übergeben -> "Dependency Injection"
-     */
-    private function.LibraryManager libraryManager;
+    private LibraryManager libraryManager;
 
     /**
-     * Setzt libraryManager für den aktuellen Controller
-     *
-     * @param libraryManager gemeinsam genutze Instanz -> darf nicht 0 sein
+     * Setzt die gemeinsam genutzte Instanz des LibraryManagers.
+     * @param libraryManager Instanz des LibraryManagers
      */
-    public void setLibraryManager(function.LibraryManager libraryManager) {
+    public void setLibraryManager(LibraryManager libraryManager) {
         this.libraryManager = libraryManager;
     }
 
     /**
-     * Schließt das aktuelle Fenster in dem sich closeButton befindet
-     *
-     * @param event Actionevent das durch das Drücken von closeButton ausgelöst wird
+     * Speichert die aktuelle Medienliste und schließt das Fenster.
+     * @param event ActionEvent, ausgelöst durch den Close-Button
      */
     public void closing(ActionEvent event) {
         if (libraryManager != null) {
@@ -71,17 +62,16 @@ public class OptionController {
     }
 
     /**
-     * Wechselt das fxml File zu home.fxml und kehrt zum Start zurück
-     *
-     * @param event Actionevent das durch Drücken eines Buttons ausgelöst wird
-     * @throws IOException wirft eine IOException bei Fehlern
+     * Speichert die Medienliste und wechselt zurück zur Startansicht.
+     * @param event ActionEvent, ausgelöst durch einen Button
+     * @throws IOException falls das Laden der FXML-Datei fehlschlägt
      */
     public void goHome(ActionEvent event) throws IOException {
         libraryManager.writeFile(FILE_PATH);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
         Parent root = loader.load();
 
-        // LibraryManager an HomeController übergeben, damit die Liste erhalten bleibt
         HomeController controller = loader.getController();
         controller.setLibraryManager(libraryManager);
 
@@ -91,64 +81,90 @@ public class OptionController {
     }
 
     /**
-     * Ändert den Labeltext von selectedMedium zum Inhalt text
-     *
-     * @param text String der ins Label geschrieben wird
+     * Setzt den aktuell ausgewählten Medientyp und passt
+     * die Beschriftungen der Zusatzfelder entsprechend an.
+     * @param text ausgewählter Medientyp (Book, CD oder DVD)
      */
-
-
     public void setLabeltext(String text) {
         selectedMedium.setText(text);
 
-        if (text.equalsIgnoreCase("Book")) {
-            extraLabel1.setText("Autor");
-            extraLabel2.setText("ISBN");
-
-        } else if (text.equalsIgnoreCase("CD")) {
-            extraLabel1.setText("Artist");
-            extraLabel2.setText("Album");
-
-        } else if (text.equalsIgnoreCase("DVD")) {
-            extraLabel1.setText("Director");
-            extraLabel2.setText("FSK");
-        }
+        String[] labels = libraryManager.getExtraLabels(text);
+        extraLabel1.setText(labels[0]);
+        extraLabel2.setText(labels[1]);
 
         extraField1.clear();
         extraField2.clear();
     }
 
     /**
-     * Entfernt ein Medium anhand seines Titels
-     * und des aktuell ausgewählten Medientyps.
-     *
-     * @param event ausgelöst durch den Remove-Button
+     * Entfernt ein Medium anhand des eingegebenen Titels
+     * und des ausgewählten Medientyps.
+     * @param event ActionEvent, ausgelöst durch den Remove-Button
      * @throws IOException kann bei Dateioperationen auftreten
      */
     public void removeMedium(ActionEvent event) throws IOException {
-        if (libraryManager == null) {
-            System.out.println("libraryManager is null");
-            throw new IllegalArgumentException("libraryManager is null");
-        }
-        String titleText = title.getText().trim();
-        String type = selectedMedium.getText();
-        if (titleText.isEmpty()) {
-            System.out.println("Kein Titel eingegeben.");
-            setAktionErfolgreich("Kein Titel eingegeben.");
-            throw new IllegalArgumentException("Text is empty");
-        }
-        boolean removed = libraryManager.removeMedium(titleText, type);
-        if (removed) {
+        String message = libraryManager.removeMediumWithMessage(title.getText(), selectedMedium.getText());
+        setAktionErfolgreich(message);
+
+        if (message.contains("erfolgreich")) {
             clearFields();
-            System.out.println(type + " wurde erfolgreich entfernt.");
-            setAktionErfolgreich(type+" wurde erfolgreich entfernt.");
-        } else {
-            System.out.println(type + " mit diesem Titel wurde nicht gefunden.");
-            setAktionErfolgreich(type+" mit diesem Titel wurde nicht gefunden.");
         }
     }
 
     /**
-     * Leert alle Eingabefelder um neuen Eintrag zu machen
+     * Erstellt ein neues Medium aus den eingegebenen Daten
+     * und fügt es der Medienliste hinzu.
+     * @param event ActionEvent, ausgelöst durch den Add-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
+    public void addMedium(ActionEvent event) throws IOException {
+        String message = libraryManager.addMedium(
+                selectedMedium.getText(),
+                title.getText(),
+                published.getText(),
+                category.getText(),
+                originalLanguage.getText(),
+                extraField1.getText(),
+                extraField2.getText()
+        );
+
+        setAktionErfolgreich(message);
+
+        if (message.contains("erfolgreich")) {
+            clearFields();
+        }
+    }
+
+    /**
+     * Leiht das ausgewählte Medium aus.
+     * @param event ActionEvent, ausgelöst durch den Borrow-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
+    public void borrowMedium(ActionEvent event) throws IOException {
+        String message = libraryManager.borrowMedium(title.getText(), selectedMedium.getText());
+        setAktionErfolgreich(message);
+
+        if (message.contains("erfolgreich")) {
+            clearFields();
+        }
+    }
+
+    /**
+     * Gibt ein ausgeliehenes Medium zurück.
+     * @param event ActionEvent, ausgelöst durch den Return-Button
+     * @throws IOException kann bei Dateioperationen auftreten
+     */
+    public void returnMedium(ActionEvent event) throws IOException {
+        String message = libraryManager.returnMedium(title.getText(), selectedMedium.getText());
+        setAktionErfolgreich(message);
+
+        if (message.contains("erfolgreich")) {
+            clearFields();
+        }
+    }
+
+    /**
+     * Leert alle Eingabefelder der Oberfläche.
      */
     private void clearFields() {
         title.clear();
@@ -157,141 +173,13 @@ public class OptionController {
         originalLanguage.clear();
         extraField1.clear();
         extraField2.clear();
-
     }
 
     /**
-     * Erstellt ein neues Medium aus den Eingabefeldern
-     * und fügt es der Medienliste hinzu.
-     *
-     * @param event ausgelöst durch den Add-Button
-     * @throws IOException kann bei Dateioperationen auftreten
+     * Zeigt eine Statusmeldung auf der Oberfläche an.
+     * @param text anzuzeigende Meldung
      */
-    public void addMedium(ActionEvent event) throws IOException {
-
-        String titleText = title.getText().trim();
-
-        if (titleText.isEmpty()) {
-            System.out.println("Kein Titel eingegeben.");
-            setAktionErfolgreich("Kein Titel eingegeben.");
-            throw new IllegalArgumentException("libraryManager is null");
-        }
-        String medium = selectedMedium.getText();
-
-        List<String> attributes = new ArrayList<>();
-        attributes.add(medium);
-        attributes.add(title.getText());
-        attributes.add(published.getText());
-        attributes.add(category.getText());
-        attributes.add(originalLanguage.getText());
-
-        attributes.add("false");
-        attributes.add("0");
-        attributes.add("1");
-
-        attributes.add(extraField1.getText());
-        attributes.add(extraField2.getText());
-
-        String line = String.join(";", attributes);
-
-        libraryManager.addMedium(line);
-
-        clearFields();
-        System.out.println("Medium wurde erfolgreich hinzugefügt");
-        setAktionErfolgreich(medium+" wurde erfolgreich hinzugefügt.");
-    }
-
-    /**
-     * Leiht ein Medium aus.
-     * Der Ausleihstatus wird auf true gesetzt
-     * und der Ausleihzähler erhöht.
-     *
-     * @param event ausgelöst durch den Borrow-Button
-     * @throws IOException kann bei Dateioperationen auftreten
-     */
-    public void borrowMedium(ActionEvent event) throws IOException {
-        if (libraryManager == null) {
-            System.out.println("libraryManager is null");
-            throw new IllegalArgumentException("libraryManager is null");
-        }
-
-        String titleText = title.getText().trim();
-
-        if (titleText.isEmpty()) {
-            System.out.println("Kein Titel eingegeben.");
-            setAktionErfolgreich("Kein Titel eingegeben.");
-            throw new IllegalArgumentException("Text is empty");
-        }
-
-        for (Medium medium : libraryManager.getMedia()) {
-            if (medium.getTitle().equalsIgnoreCase(titleText)) {
-
-                if (medium.isBorrowed()) {
-                    System.out.println("Medium ist bereits ausgeliehen.");
-                    setAktionErfolgreich("Medium ist bereits ausgeliehen.");
-                    return;
-                }
-
-                medium.setBorrowed(true);
-                medium.setBorCount(medium.getBorCount() + 1);
-
-                System.out.println("Medium wurde ausgeliehen.");
-                setAktionErfolgreich("Medium wurde erfolgreich ausgeliehen.");
-                clearFields();
-                return;
-            }
-        }
-
-        System.out.println("Medium nicht gefunden.");
-        setAktionErfolgreich(selectedMedium+" nicht gefunden.");
-    }
-
-    /**
-     * Gibt ein ausgeliehenes Medium zurück.
-     * Der Ausleihstatus wird auf false gesetzt.
-     *
-     * @param event ausgelöst durch den Return-Button
-     * @throws IOException kann bei Dateioperationen auftreten
-     */
-    public void returnMedium(ActionEvent event) throws IOException {
-        if (libraryManager == null) {
-            System.out.println("libraryManager is null");
-            throw new IllegalArgumentException("libraryManager is null");
-        }
-
-        String titleText = title.getText().trim();
-
-        if (titleText.isEmpty()) {
-            System.out.println("Kein Titel eingegeben.");
-            setAktionErfolgreich("Kein Titel eingegeben.");
-            throw new IllegalArgumentException("Text is empty");
-        }
-
-        for (Medium medium : libraryManager.getMedia()) {
-            if (medium.getTitle().equalsIgnoreCase(titleText)) {
-
-                if (!medium.isBorrowed()) {
-                    System.out.println("Medium ist nicht ausgeliehen.");
-                    setAktionErfolgreich("Medium ist nicht ausgeliehen.");
-                    return;
-                }
-
-                medium.setBorrowed(false);
-
-                System.out.println("Medium wurde zurückgegeben.");
-                setAktionErfolgreich("Medium wurde erfolgreich zurückgegeben!");
-                clearFields();
-                return;
-            }
-        }
-
-        System.out.println("Medium nicht gefunden.");
-        setAktionErfolgreich(selectedMedium+" nicht gefunden.");
-    }
-
-    public void setAktionErfolgreich(String text){
+    public void setAktionErfolgreich(String text) {
         aktionErfolgreich.setText(text);
     }
-
-
 }
